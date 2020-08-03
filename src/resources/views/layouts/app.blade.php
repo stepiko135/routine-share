@@ -8,10 +8,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
+    <title>Routine Share</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -23,55 +24,82 @@
 
 <body>
     <div id="app">
-        <nav class="nav-wrapper light-blue">
+        <nav class="nav-wrapper blue lighten-2">
             <a class="brand-logo" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
+                Routine Share
             </a>
-                <!-- {{-- 導入したいもの　scrollspy Toasts  character-counter --}} -->
-                <!-- Right Side Of Navbar -->
-                <!-- Authentication Links -->
-                @guest
-                <ul class="right">
-                    <li>
-                        <a href="{{ route('login') }}">{{ __('Login') }}</a>
-                    </li>
+            <!-- {{-- 導入したいもの　scrollspy Toasts  character-counter --}} -->
+            <!-- Right Side Of Navbar -->
+            <!-- Authentication Links -->
+            @guest
+            <ul class="right">
+                <li>
+                    <a href="{{ route('login') }}">{{ __('Login') }}</a>
+                </li>
                 @if (Route::has('register'))
-                    <li>
-                        <a href="{{ route('register') }}">{{ __('Register') }}</a>
-                    </li>
+                <li>
+                    <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                </li>
                 @endif
-                </ul>
-                {{-- ログインしてたら表示される --}}
-                @else
-                <ul class="right">
-                    <li>
-                        <a data-target="dropdown1" class="dropdown-trigger" href="!#" role="button">
-                            {{ Auth::user()->name }} <span><i class="material-icons right">arrow_drop_down</i></span>
-                        </a>
-                    </li>
-                </ul>
-                <!-- Dropdown Structure -->
-                <ul id="dropdown1" class="dropdown-content">
-                    <li>
-                        <a class="" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </li>
-                </ul>
-                @endguest
+            </ul>
+            {{-- ログインしてたら表示される --}}
+            @else
+            <ul class="right">
+                <li>
+                    <a href="#">お気に入り</a>
+                </li>
+                <li>
+                    <a href="#">ルーティンを編集</a>
+                </li>
+                <li>
+                    <a data-target="dropdown1" class="dropdown-trigger" href="#" role="button">
+                        {{ Auth::user()->name }} <span><i class="material-icons right">arrow_drop_down</i></span>
+                    </a>
+                </li>
+            </ul>
+            <!-- Dropdown Structure -->
+            <ul id="dropdown1" class="dropdown-content">
+                <li>
+                    <a class="" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
+            </ul>
+            @endguest
         </nav>
 
-        <main class="">
+        <main>
             @yield('content')
         </main>
-        <script>
-            $(document).ready(function(){
-            $(".dropdown-trigger").dropdown()});
-        </script>
+        <footer class="page-footer grey">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">フッター</h5>
+                        <p class="grey-text text-lighten-4">ここへグリッドレイアウトなど併用してコンテンツ作成</p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">リンク</h5>
+                        <ul>
+                            <li><a class="grey-text text-lighten-3" href="#!">リンク1</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">リンク2</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">リンク3</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">リンク4</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    <small>© 2020 Copyright HIRO</small>
+                    <a class="grey-text text-lighten-4 right" href="#!">その他リンク</a>
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 

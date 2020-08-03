@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +8,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
+    <title>Routine Share</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -15,66 +17,90 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
+
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
+        <nav class="nav-wrapper blue lighten-2">
+            <a class="brand-logo" href="{{ url('/') }}">
+                Routine Share
+            </a>
+            <!-- {{-- 導入したいもの　scrollspy Toasts  character-counter --}} -->
+            <!-- Right Side Of Navbar -->
+            <!-- Authentication Links -->
+            @guest
+            <ul class="right">
+                <li>
+                    <a href="{{ route('login') }}">{{ __('Login') }}</a>
+                </li>
+                @if (Route::has('register'))
+                <li>
+                    <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                </li>
+                @endif
+            </ul>
+            {{-- ログインしてたら表示される --}}
+            @else
+            <ul class="right">
+                <li>
+                    <a href="#">お気に入り</a>
+                </li>
+                <li>
+                    <a href="#">ルーティンを編集</a>
+                </li>
+                <li>
+                    <a data-target="dropdown1" class="dropdown-trigger" href="#" role="button">
+                        {{ Auth::user()->name }} <span><i class="material-icons right">arrow_drop_down</i></span>
+                    </a>
+                </li>
+            </ul>
+            <!-- Dropdown Structure -->
+            <ul id="dropdown1" class="dropdown-content">
+                <li>
+                    <a class="" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
+            </ul>
+            @endguest
         </nav>
 
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
+        <footer class="page-footer grey">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">フッター</h5>
+                        <p class="grey-text text-lighten-4">ここへグリッドレイアウトなど併用してコンテンツ作成</p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">リンク</h5>
+                        <ul>
+                            <li><a class="grey-text text-lighten-3" href="#!">リンク1</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">リンク2</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">リンク3</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">リンク4</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    <small>© 2020 Copyright HIRO</small>
+                    <a class="grey-text text-lighten-4 right" href="#!">その他リンク</a>
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
+
 </html>

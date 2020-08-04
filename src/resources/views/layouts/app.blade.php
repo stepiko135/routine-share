@@ -26,12 +26,13 @@
     <div id="app">
         <nav class="nav-wrapper blue lighten-2">
             <a class="brand-logo" href="{{ url('/') }}">
-                Routine Share
+                <img src="{{asset('/img/logo.png')}}" alt="Routine Share" width="300px">
             </a>
             <!-- {{-- 導入したいもの　scrollspy Toasts  character-counter --}} -->
             <!-- Right Side Of Navbar -->
             <!-- Authentication Links -->
             @guest
+            {{-- ログインしていないと表示 --}}
             <ul class="right">
                 <li>
                     <a href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -42,14 +43,14 @@
                 </li>
                 @endif
             </ul>
-            {{-- ログインしてたら表示される --}}
+            {{-- ログインしてたら表示--}}
             @else
             <ul class="right">
                 <li>
                     <a href="#">お気に入り</a>
                 </li>
                 <li>
-                    <a href="#">ルーティンを編集</a>
+                    <a href="/mypage">マイルーティン</a>
                 </li>
                 <li>
                     <a data-target="dropdown1" class="dropdown-trigger" href="#" role="button">
@@ -60,7 +61,7 @@
             <!-- Dropdown Structure -->
             <ul id="dropdown1" class="dropdown-content">
                 <li>
-                    <a class="" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
                     </a>

@@ -6,6 +6,7 @@ use App\Routine;
 use App\RoutineItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\RoutineRequest;
 
 class RoutineController extends Controller
 {
@@ -39,7 +40,7 @@ class RoutineController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RoutineRequest $request)
     {
         $routine = new Routine;
         // バリデーションはform requestに任せる
@@ -94,7 +95,7 @@ class RoutineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RoutineRequest $request, $id)
     {
         // バリデーションはform requestに任せる
         $routine = Routine::find($id);

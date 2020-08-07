@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\RoutineItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\RoutineItemRequest;
 use Symfony\Component\Routing\RouterInterface;
 
 class RoutineItemController extends Controller
@@ -46,7 +47,7 @@ class RoutineItemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RoutineItemRequest $request)
     {
         $routineItem = new RoutineItem;
         $forms = $request->all();
@@ -83,7 +84,7 @@ class RoutineItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RoutineItemRequest $request, $id)
     {
         $routineItem = RoutineItem::find($id);
         $forms = $request->all();

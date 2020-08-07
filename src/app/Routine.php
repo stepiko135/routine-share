@@ -14,4 +14,9 @@ class Routine extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function routineItem()
+    {
+        return $this->hasMany('App\RoutinItem');
+    }
 }

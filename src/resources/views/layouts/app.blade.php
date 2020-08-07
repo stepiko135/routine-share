@@ -12,20 +12,20 @@
     <title>Routine Share</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 
 <body>
     <div id="app">
         <nav class="nav-wrapper blue lighten-2">
-            <a class="brand-logo" href="{{ url('/') }}">
+            <a class="brand-logo" href="/home">
                 <img src="{{asset('/img/logo.png')}}" alt="Routine Share" width="300px">
             </a>
             <!-- {{-- 導入したいもの　scrollspy Toasts  character-counter --}} -->
@@ -61,9 +61,12 @@
             <!-- Dropdown Structure -->
             <ul id="dropdown1" class="dropdown-content">
                 <li>
+                    <a href="#">プロフィール</a>
+                </li>
+                <li>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
+                        ログアウト
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
@@ -95,9 +98,8 @@
                 </div>
             </div>
             <div class="footer-copyright">
-                <div class="container">
+                <div class="container center">
                     <small>© 2020 Copyright HIRO</small>
-                    <a class="grey-text text-lighten-4 right" href="#!">その他リンク</a>
                 </div>
             </div>
         </footer>

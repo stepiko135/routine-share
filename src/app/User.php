@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Routine');
     }
+
+    public function routineItems()
+    {
+        return $this->hasMany('App\RoutineItem');
+    }
 }

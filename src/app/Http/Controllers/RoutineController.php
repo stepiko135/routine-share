@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Routine;
+use App\RoutineItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RoutineController extends Controller
 {
@@ -19,11 +21,6 @@ class RoutineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $routines =Routine::all();
-        return view('routine.index',compact('routines'));
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -32,6 +29,7 @@ class RoutineController extends Controller
      */
     public function create()
     {
+        // そのままRoutineItemの作成ページに遷移させる
         return view('routine.create');
     }
 
@@ -48,10 +46,8 @@ class RoutineController extends Controller
         $forms = $request->all();
         unset($forms['_token']);
         $routine->fill($forms)->save();
-        // このまま新規でRoutine Itemを作成させる。
         // 今はmypageにリダイレクト
-        return redirect('/mypage');
-
+        return redirect('mypage/');
     }
 
     /**
@@ -62,9 +58,11 @@ class RoutineController extends Controller
      */
     public function show($id)
     {
-        // 
+        $routine = Routine::find($id);
+        $routineItems = RoutineItem::where('routine_id',$id)->get();
+        return view('routine.show',compact('routine','routineItems'));
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -73,11 +71,22 @@ class RoutineController extends Controller
      */
     public function edit($id)
     {
-        // 自分の投稿のみ編集できるようにする。
-        $routine = Routine::find($id);
-        return view('routine.edit',compact('routine'));
+        // 自分以外の投稿を編集しようとしたら/homeへリダイレクト
+        $longinUserId = Auth::id();
+        $routineOwnerId = Routine::find($id)->user_id;
+
+        //登録済みアイテムがあれば表示させる
+        $items = RoutineItem::where('routine_id',$id)->get();
+        
+        if($longinUserId === $routineOwnerId)
+        {
+            $routine = Routine::find($id);
+            return view('routine.edit', compact('routine','items'));
+        }else{
+            return redirect('/home');
+        }
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -92,10 +101,7 @@ class RoutineController extends Controller
         $forms = $request->all();
         unset($forms['_token']);
         $routine->fill($forms)->save();
-         // このままRoutine Itemを編集させる。
-        // 今はmypageにリダイレクト
         return redirect('/mypage');
-
     }
 
     /**

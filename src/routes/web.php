@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MyPageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +20,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home','HomeController@index')->name('home');
+
+Route::get('/mypage','MyPageController@index')->name('mypage');
+
+Route::resource('/routine','RoutineController',['except'=>'index']);
+
+Route::resource('/routine_item','RoutineItemController',['except'=>'show']);

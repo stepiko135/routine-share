@@ -12,26 +12,27 @@
     <title>Routine Share</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 
 <body>
     <div id="app">
         <nav class="nav-wrapper blue lighten-2">
-            <a class="brand-logo" href="{{ url('/') }}">
-                Routine Share
+            <a class="brand-logo" href="/home">
+                <img src="{{asset('/img/logo.png')}}" alt="Routine Share" width="300px">
             </a>
             <!-- {{-- 導入したいもの　scrollspy Toasts  character-counter --}} -->
             <!-- Right Side Of Navbar -->
             <!-- Authentication Links -->
             @guest
+            {{-- ログインしていないと表示 --}}
             <ul class="right">
                 <li>
                     <a href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -42,14 +43,14 @@
                 </li>
                 @endif
             </ul>
-            {{-- ログインしてたら表示される --}}
+            {{-- ログインしてたら表示--}}
             @else
             <ul class="right">
                 <li>
                     <a href="#">お気に入り</a>
                 </li>
                 <li>
-                    <a href="#">ルーティンを編集</a>
+                    <a href="/mypage">マイルーティン</a>
                 </li>
                 <li>
                     <a data-target="dropdown1" class="dropdown-trigger" href="#" role="button">
@@ -60,9 +61,12 @@
             <!-- Dropdown Structure -->
             <ul id="dropdown1" class="dropdown-content">
                 <li>
-                    <a class="" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    <a href="#">プロフィール</a>
+                </li>
+                <li>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
+                        ログアウト
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
@@ -94,9 +98,8 @@
                 </div>
             </div>
             <div class="footer-copyright">
-                <div class="container">
+                <div class="container center">
                     <small>© 2020 Copyright HIRO</small>
-                    <a class="grey-text text-lighten-4 right" href="#!">その他リンク</a>
                 </div>
             </div>
         </footer>

@@ -12,8 +12,8 @@
 
 {{-- アイテムの表示 --}}
 @foreach ($routineItems as $routineItem)
-<div class="container">
-    <p>時間：{{$routineItem->time}}</p>
+<div class="container card">
+    <p>時間：{{substr($routineItem->time,0,5)}}</p>
     <p>タイトル：{{$routineItem->title}}</p>
     <p>説明：{{$routineItem->desc}}</p>
 </div>

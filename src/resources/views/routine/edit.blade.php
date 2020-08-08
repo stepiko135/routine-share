@@ -21,7 +21,7 @@
         <p class="red-text">{{$message}}</p>
         @enderror
 
-        <textarea name="desc" id="desc" cols="50" rows="10"
+        <textarea name="desc" id="desc" cols="50" rows="10" wrap="hard"
             placeholder="(例) 忙しい朝でもリラックスできる私のルーティンを紹介します！！">{{$routine->desc}}</textarea>
         <button type="submit" class="btn">更新</button>
         <button type="reset" class="btn red lighten-2">クリア</button>
@@ -48,7 +48,7 @@
         <label>時間<input type="time" name="time" value="{{old('time')}}" required></label>
         <label>アイテム名<input type="text" name="title" placeholder="(例) コーヒーを飲む" autofocus
                 value="{{old('title')}}"></label>
-        <label>説明<textarea name="desc" cols="50" rows="10"
+        <label>説明<textarea name="desc" cols="50" rows="10"　wrap="hard"
                 placeholder="(例) 濃いめのコーヒーがおすすめです！">{{old('desc')}}</textarea></label>
         <button type="submit" form="submitItems" id="submit" class="btn">アイテム送信</button>
     </div>
@@ -64,7 +64,7 @@
         <label>時間<input type="time" name="time" value="{{$item->time}}" required></label>
         <label>アイテム名<input type="text" name="title" placeholder="(例) コーヒーを飲む" autofocus
                 value="{{$item->title}}"></label>
-        <label>説明<textarea name="desc" cols="50" rows="10"
+        <label>説明<textarea name="desc" cols="50" rows="10"　wrap="hard"
                 placeholder="(例) 濃いめのコーヒーがおすすめです！">{{$item->desc}}</textarea></label>
         <button type="submit" class="btn">編集</button>
 </form>

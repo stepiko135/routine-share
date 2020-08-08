@@ -17,7 +17,7 @@ class CreateRoutinesTable extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->string('name');
-            $table->text('desc');
+            $table->string('desc');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

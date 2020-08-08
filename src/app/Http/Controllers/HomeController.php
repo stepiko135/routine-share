@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Routine;
+use App\Favorite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,6 +28,7 @@ class HomeController extends Controller
     {
         $routines = Routine::all();
         $authId = Auth::id();
+
         return view('home', compact('routines','authId'));
     }
 }

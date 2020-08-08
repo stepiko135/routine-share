@@ -4,6 +4,31 @@
 <div class="container card">
     <p>ルーティン名：{{$routine->name}}</p>
     <p>説明：{{$routine->desc}}</p>
+
+    {{-- Favoriteボタン --}}
+    @guest
+    <a title="気に入りましたか？ログインしましょう！" href="/login"><span class="material-icons">star_border</span></a>
+
+    @else
+    <a type="submit" href="#">
+        <span class="material-icons" onclick="event.preventDefault(); document.getElementById('fav-submit').submit();">
+            @if ($isFavorite)
+            star
+            @else
+            star_border
+            @endif
+        </span>
+    </a>
+
+    <form id="fav-submit" action="/favorite" method="POST">
+        @csrf
+        <input type="hidden" name="routine_id" value="{{$routine->id}}">
+    </form>
+    @endguest
+    
+    {{$totalFav}}
+    {{-- Favoriteボタン終わり --}}
+
 </div>
 
 @if (Auth::id() === $routine->user_id)

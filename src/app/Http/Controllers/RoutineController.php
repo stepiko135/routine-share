@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Routine;
 use App\RoutineItem;
+use App\Favorite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\RoutineRequest;
@@ -61,7 +62,14 @@ class RoutineController extends Controller
     {
         $routine = Routine::find($id);
         $routineItems = RoutineItem::where('routine_id',$id)->get();
-        return view('routine.show',compact('routine','routineItems'));
+
+        // お気に入り機能の表示
+        $user_id = Auth::id();
+        $isFavorite = Favorite::where('routine_id',$id)->where('user_id',$user_id)->exists();
+        // お気に入りカウンター
+        $totalFav = count(Favorite::where('routine_id',$id)->get());
+        
+        return view('routine.show',compact('routine','routineItems','isFavorite','totalFav'));
     }
 
     /**
@@ -72,12 +80,12 @@ class RoutineController extends Controller
      */
     public function edit($id)
     {
+        //アイテムがあれば表示させる
+        $items = RoutineItem::where('routine_id',$id)->get();
+        
         // 自分以外の投稿を編集しようとしたら/homeへリダイレクト
         $longinUserId = Auth::id();
         $routineOwnerId = Routine::find($id)->user_id;
-
-        //登録済みアイテムがあれば表示させる
-        $items = RoutineItem::where('routine_id',$id)->get();
         
         if($longinUserId === $routineOwnerId)
         {

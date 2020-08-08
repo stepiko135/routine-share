@@ -27,3 +27,5 @@ Route::get('/mypage','MyPageController@index')->name('mypage');
 Route::resource('/routine','RoutineController',['except'=>'index']);
 
 Route::resource('/routine_item','RoutineItemController',['except'=>'show']);
+
+Route::post('/favorite','FavoriteController@favorite');

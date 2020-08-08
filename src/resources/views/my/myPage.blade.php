@@ -3,7 +3,10 @@
 @section('content')
 <a href="/routine/create" class="right btn-floating btn-large waves-effect waves-light"><i
         class="material-icons">add</i></a>
-this is routine.
+@if (!count($routines)>0)
+    <h5>あたらしいルーティンを作ってみましょう！</h5>
+
+@else
 @foreach ($routines as $routine)
 <div class="container card">
     <p>投稿者：{{$routine->user->name}}</p>
@@ -19,7 +22,8 @@ this is routine.
     <form id="delete" method="POST" action="/routine/{{$routine->id}}">
         @csrf @method('DELETE')
     </form>
-    
+
 </div>
 @endforeach
+@endif
 @endsection

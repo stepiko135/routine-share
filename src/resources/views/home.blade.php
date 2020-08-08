@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-全員の投稿を表示
 @foreach ($routines as $routine)
 <div class="container card">
     <p>投稿者：{{$routine->user->name}}</p>
@@ -42,7 +41,7 @@
         @csrf @method('DELETE')
     </form>
     @endif
-
 </div>
 @endforeach
+<button class="btn" type="button" onclick="history.back()">もどる</button>
 @endsection

@@ -47,7 +47,7 @@
             @else
             <ul class="right">
                 <li>
-                    <a href="#">お気に入り</a>
+                    <a href="/my-favorite">お気に入り</a>
                 </li>
                 <li>
                     <a href="/mypage">マイルーティン</a>

@@ -7,7 +7,7 @@ routine item 一覧
         class="material-icons">add</i></a>
 @foreach ($routineItems as $item)
 <div class="container card">
-    <form action="/routine_item/{{$item->id}}" method="POST">
+    <form action="/routine-item/{{$item->id}}" method="POST">
         @csrf @method('DELETE')
         <p>{{$item->time}}</p>
         <p>{{$item->title}}</p>

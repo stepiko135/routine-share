@@ -3,7 +3,7 @@
 @section('content')
 <h5>ルーティンアイテムの作成</h5>
 <div class="container card">
-    <form action="/routine_item/" method="POST">
+    <form action="/routine-item/" method="POST">
         @csrf
         <input type="hidden" name="user_id" value="{{Auth::id()}}">
         <input type="hidden" name="routine_id" value="{{$routine_id}}">

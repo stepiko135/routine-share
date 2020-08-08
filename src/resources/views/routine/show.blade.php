@@ -43,4 +43,5 @@
     <p>説明：{{$routineItem->desc}}</p>
 </div>
 @endforeach
+<button class="btn" type="button" onclick="history.back()">もどる</button>
 @endsection

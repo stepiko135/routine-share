@@ -22,10 +22,11 @@ Auth::routes();
 
 Route::get('/home','HomeController@index')->name('home');
 
-Route::get('/mypage','MyPageController@index')->name('mypage');
+Route::get('/mypage','MyPageController@myPage')->name('mypage');
+Route::get('/my-favorite','MypageController@myFavorite')->name('my-favorite');
 
 Route::resource('/routine','RoutineController',['except'=>'index']);
 
-Route::resource('/routine_item','RoutineItemController',['except'=>'show']);
+Route::resource('/routine-item','RoutineItemController',['except'=>'show']);
 
 Route::post('/favorite','FavoriteController@favorite');

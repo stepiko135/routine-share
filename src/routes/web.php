@@ -21,6 +21,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home','HomeController@index')->name('home');
+Route::get('/ranking','RankingController@index')->name('ranking');
 
 Route::get('/mypage','MyPageController@myPage')->name('mypage');
 Route::get('/my-favorite','MypageController@myFavorite')->name('my-favorite');

@@ -49,6 +49,6 @@ class User extends Authenticatable
 
     public function favorites()
     {
-        return $this->hasMany('App\Favorite');
+        return $this->belongsToMany('App\Routine','favorites','user_id','routine_id')->withTimestamps();
     }
 }

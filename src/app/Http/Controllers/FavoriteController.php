@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Favorite;
+use App\Routine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,18 +10,14 @@ class FavoriteController extends Controller
 {
     public function favorite( Request $request)
     {
-        $routine_id = $request->routine_id;
+        $routine = Routine::find($request->routine_id);
         $user_id = Auth::id();
-        $favRequest = Favorite::where('routine_id',$routine_id)->where('user_id',$user_id);
 
-        if($favRequest->exists())
+        if($routine->favorites()->where('user_id',$user_id)->exists())
         {
-            $favRequest->delete();
+            $routine->favorites()->detach($user_id);
         }else{
-            $favorite = new Favorite;
-            $favorite->routine_id = $routine_id;
-            $favorite->user_id = $user_id;
-            $favorite->save();
+            $routine->favorites()->attach($user_id);
         }
         return back();
         // return [''];

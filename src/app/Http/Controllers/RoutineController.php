@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Routine;
 use App\RoutineItem;
-use App\Favorite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\RoutineRequest;
@@ -43,8 +42,8 @@ class RoutineController extends Controller
      */
     public function store(RoutineRequest $request)
     {
+        // バリデーションはRoutine requestに任せる
         $routine = new Routine;
-        // バリデーションはform requestに任せる
         $forms = $request->all();
         unset($forms['_token']);
         $routine->fill($forms)->save();
@@ -63,13 +62,7 @@ class RoutineController extends Controller
         $routine = Routine::find($id);
         $routineItems = RoutineItem::where('routine_id',$id)->get();
 
-        // お気に入り機能の表示
-        $user_id = Auth::id();
-        $isFavorite = Favorite::where('routine_id',$id)->where('user_id',$user_id)->exists();
-        // お気に入りカウンター
-        $totalFav = count(Favorite::where('routine_id',$id)->get());
-        
-        return view('routine.show',compact('routine','routineItems','isFavorite','totalFav'));
+        return view('routine.show',compact('routine','routineItems'));
     }
 
     /**
@@ -105,7 +98,7 @@ class RoutineController extends Controller
      */
     public function update(RoutineRequest $request, $id)
     {
-        // バリデーションはform requestに任せる
+        // バリデーションはRoutineRequestに任せる
         $routine = Routine::find($id);
         $forms = $request->all();
         unset($forms['_token']);

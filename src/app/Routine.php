@@ -21,6 +21,6 @@ class Routine extends Model
 
     public function favorites()
     {
-        return $this->hasMany('App\Favorite');
+        return $this->belongsToMany('App\User','favorites','routine_id','user_id')->withTimestamps();
     }
 }

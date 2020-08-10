@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<a href="{{route('ranking')}}" class="btn">ランキング</a>
+
 @foreach ($routines as $routine)
 <div class="container card">
     <p>投稿者：{{$routine->user->name}}</p>
@@ -8,13 +10,15 @@
     <p>説明：{{$routine->desc}}</p>
     <a class="btn" href="routine/{{$routine->id}}">ルーティンを見る</a>
     {{-- Favoriteボタン --}}
-@guest
-    <a title="気に入りましたか？ログインしましょう！" href="/login"><span class="material-icons">star_border</span></a>
-
-@else
+    @guest
+    <a title="気に入りましたか？登録してみよう" href="/login"><span class="material-icons">star_border</span></a>
+    @else
+    {{-- {{dd($routine->favorites)}} --}}
+    {{-- {{dd(Auth::id())}} --}}
     <a type="submit" href="#">
-    <span class="material-icons" onclick="event.preventDefault(); document.getElementById('fav-submit{{$routine->id}}').submit();">
-            @if (App\Favorite::where('routine_id',$routine->id)->where('user_id', Auth::id())->exists())
+        <span class="material-icons"
+            onclick="event.preventDefault(); document.getElementById('fav-submit{{$routine->id}}').submit();">
+            @if ($routine->favorites()->where('user_id', Auth::id())->exists())
             star
             @else
             star_border
@@ -22,13 +26,13 @@
         </span>
     </a>
 
-<form id="fav-submit{{$routine->id}}" action="/favorite" method="POST">
+    <form id="fav-submit{{$routine->id}}" action="/favorite" method="POST">
         @csrf
         <input type="hidden" name="routine_id" value={{$routine->id}}>
     </form>
-@endguest
+    @endguest
     {{-- favoriteカウンター --}}
-    {{count(App\Favorite::where('routine_id', $routine->id)->get())}}
+    {{$routine->favorites->count()}}
     {{-- Favoriteボタン終わり --}}
 
     @if ($routine->user_id===$authId)

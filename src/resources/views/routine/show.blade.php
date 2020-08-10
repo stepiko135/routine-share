@@ -7,12 +7,12 @@
 
     {{-- Favoriteボタン --}}
     @guest
-    <a title="気に入りましたか？ログインしましょう！" href="/login"><span class="material-icons">star_border</span></a>
+    <a title="気に入りましたか？登録してみよう" href="/login"><span class="material-icons">star_border</span></a>
 
     @else
     <a type="submit" href="#">
         <span class="material-icons" onclick="event.preventDefault(); document.getElementById('fav-submit').submit();">
-            @if ($isFavorite)
+            @if ($routine->favorites()->where('user_id', Auth::id())->exists())
             star
             @else
             star_border
@@ -26,7 +26,7 @@
     </form>
     @endguest
     
-    {{$totalFav}}
+    {{$routine->favorites->count()}}
     {{-- Favoriteボタン終わり --}}
 
 </div>

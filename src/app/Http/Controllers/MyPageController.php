@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Routine;
-use App\Favorite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +25,7 @@ class MyPageController extends Controller
     public function myFavorite()
     {
         $userId = Auth::user()->id;
-        $favorites = Favorite::where('user_id',$userId)->get();
+        $favorites = User::find($userId)->favorites;
 
         return view('my.myFavorite',compact('favorites'));
     }

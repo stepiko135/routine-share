@@ -21,6 +21,8 @@ class CreateFavoritesTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('routine_id')->references('id')->on('routines')->onDelete('cascade');
+
+            $table->unique(['user_id','routine_id']);
         });
     }
 

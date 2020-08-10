@@ -2,7 +2,6 @@
 
 @section('content')
 <p>自分のお気に入り登録したルーティンの一覧です。</p>
-{{-- {{dd($favorites)}} --}}
 @if (count($favorites)>0)
     @foreach ($favorites as $favorite)
     <div class="container card">

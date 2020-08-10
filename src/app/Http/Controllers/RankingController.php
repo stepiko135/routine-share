@@ -10,15 +10,17 @@ class RankingController extends Controller
 {
     public function index(Request $request)
     {
-        switch($request->sort){
+        $routines = Routine::withCount('favorites')->orderBy('favorites_count','desc')->paginate(3);
+        $sort = $request->sort;
+        switch($sort){
             case 'name' :
                 $routines = Routine::orderBy('name','desc')->paginate(3);
             break;
-            case 'created-at' :
+            case 'new' :
                 $routines = Routine::orderBy('created_at','desc')->paginate(3);
             break;
             case 'favorite' :
-                $routines = Routine::withCount('favorite_users')->orderByDesc('favotrite_users_count')->paginate(3);
+                $routines = Routine::withCount('favorites')->orderBy('favorites_count','desc')->paginate(3);
                 // $routines = $routine->favorite_users->count();
             break;
             // case 'name' :
@@ -31,7 +33,7 @@ class RankingController extends Controller
         
         // $routines = Favorite::with('routine')->get();
         // $favRanking = Favorite::withCount('user')->orderBy('user_count','desc')->get();
-        return view('ranking', compact('routines'));
+        return view('ranking', compact('routines','sort'));
     }
 
 }

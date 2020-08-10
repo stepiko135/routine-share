@@ -13,8 +13,7 @@
     @guest
     <a title="気に入りましたか？登録してみよう" href="/login"><span class="material-icons">star_border</span></a>
     @else
-    {{-- {{dd($routine->favorites)}} --}}
-    {{-- {{dd(Auth::id())}} --}}
+
     <a type="submit" href="#">
         <span class="material-icons"
             onclick="event.preventDefault(); document.getElementById('fav-submit{{$routine->id}}').submit();">

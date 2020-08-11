@@ -1,0 +1,42 @@
+// layouts.app.cssに適用
+
+html,body{
+    min-height:100vh;
+}
+
+main{
+    min-height: 80vh;
+}
+
+.main-bg{
+    background-color: $body-bg;
+}
+
+.main{
+    background-color: $main;
+}
+
+.footer{
+    background-color: $accent-light;
+}
+
+.font{
+    font-family: 'Kosugi Maru', sans-serif;
+    color:#333;
+}
+// ナビゲーションバー横幅調整
+#app nav li {
+    min-width: 155px;
+}
+// マテリアルアイコン
+// 位置調整
+.material-icons{
+    display: inline-flex;
+    vertical-align: middle;
+}
+.material-icons.large{
+    font-size: 40px;
+}
+
+
+// Routine表示

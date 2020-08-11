@@ -16,15 +16,16 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link rel=”shortcut icon” href="{{ asset('favicon.ico')}}" />
 </head>
 
 <body>
-    <div id="app">
-        <nav class="nav-wrapper blue lighten-2">
+    <div id="app" class="main-bg">
+        <nav class="nav-wrapper main">
             <a class="brand-logo" href="/home">
                 <img src="{{asset('/img/logo.png')}}" alt="Routine Share" width="300px">
             </a>
@@ -35,11 +36,19 @@
             {{-- ログインしていないと表示 --}}
             <ul class="right">
                 <li>
-                    <a href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <a href="{{ route('login') }}">
+                        <span class="material-icons">
+                            login
+                        </span>
+                        ログイン</a>
                 </li>
                 @if (Route::has('register'))
                 <li>
-                    <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                    <a href="{{ route('register') }}">
+                        <span class="material-icons">
+                            assignment_turned_in
+                        </span>
+                        登録</a>
                 </li>
                 @endif
             </ul>
@@ -47,13 +56,24 @@
             @else
             <ul class="right">
                 <li>
-                    <a href="/my-favorite">お気に入り</a>
+                    <a href="/my-favorite">
+                        <span class="material-icons">
+                            bookmark_border
+                        </span>
+                        お気に入り</a>
                 </li>
                 <li>
-                    <a href="/mypage">マイルーティン</a>
+                    <a href="/mypage">
+                        <span class="material-icons">
+                            fact_check
+                        </span>
+                        マイページ</a>
                 </li>
                 <li>
                     <a data-target="dropdown1" class="dropdown-trigger" href="#" role="button">
+                        <span class="material-icons">
+                            account_circle
+                        </span>
                         {{ Auth::user()->name }} <span><i class="material-icons right">arrow_drop_down</i></span>
                     </a>
                 </li>
@@ -61,11 +81,18 @@
             <!-- Dropdown Structure -->
             <ul id="dropdown1" class="dropdown-content">
                 <li>
-                    <a href="#">プロフィール</a>
+                    <a href="#">
+                        <span class="material-icons">
+                            build_circle
+                        </span>
+                        プロフィール</a>
                 </li>
                 <li>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
+                        <span class="material-icons">
+                            exit_to_app
+                        </span>
                         ログアウト
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -79,20 +106,31 @@
         <main>
             @yield('content')
         </main>
-        <footer class="page-footer grey">
+        <footer class="page-footer footer">
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
-                        <h5 class="white-text">フッター</h5>
-                        <p class="grey-text text-lighten-4">ここへグリッドレイアウトなど併用してコンテンツ作成</p>
+                        <h5><a class="white-text" href="/">
+                                <span class="material-icons">
+                                    home
+                                </span>トップ</a></h5>
+                        <p class="grey-text text-lighten-4">みんなのルーティンを共有しよう</p>
                     </div>
                     <div class="col l4 offset-l2 s12">
-                        <h5 class="white-text">リンク</h5>
+                        <h5 class="white-text">
+                            <span class="material-icons">
+                                attach_file
+                            </span>
+                            リンク</h5>
                         <ul>
-                            <li><a class="grey-text text-lighten-3" href="#!">リンク1</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">リンク2</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">リンク3</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">リンク4</a></li>
+                            <li><a class="grey-text text-lighten-3" href="/ranking">
+                                    <span class="material-icons">sort</span>ランキング</a></li>
+                            <li><a class="grey-text text-lighten-3" href="/favorite">
+                                    <span class="material-icons">bookmark_border</span>
+                                    お気に入り
+                                </a></li>
+                            <li><a class="grey-text text-lighten-3" href="mypage">
+                                    <span class="material-icons">fact_check</span>マイページ</a></li>
                         </ul>
                     </div>
                 </div>

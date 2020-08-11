@@ -90,7 +90,7 @@ class RoutineItemController extends Controller
         $forms = $request->all();
         unset($forms['_token']);
         $routineItem->fill($forms)->save();
-        return back();
+        return redirect('/home');
     }
 
     /**

@@ -9165,3 +9165,42 @@ input[type=range]::-ms-thumb {
   }
 }
 
+html,
+body {
+  min-height: 100vh;
+}
+
+main {
+  min-height: 80vh;
+}
+
+.main-bg {
+  background-color: #EEF6FB;
+}
+
+.main {
+  background-color: #049ce3;
+}
+
+.footer {
+  background-color: #ba946a;
+}
+
+.font {
+  font-family: "Kosugi Maru", sans-serif;
+  color: #333;
+}
+
+#app nav li {
+  min-width: 155px;
+}
+
+.material-icons {
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.material-icons.large {
+  font-size: 40px;
+}
+

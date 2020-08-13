@@ -52,7 +52,7 @@
                             </div>
                         </div>
 
-                        <div class="row mb-0">
+                        <div class="row">
                             <div class="col s6 offset-s4">
                                 <button type="submit" class="btn-large">
                                     <span class="material-icons">
@@ -60,6 +60,7 @@
                                         </span>
                                         ログイン
                                 </button>
+                                <br>
                                 @if (Route::has('password.request'))
                                 <a class="grey-text" href="{{ route('password.request') }}">
                                     <span class="material-icons">

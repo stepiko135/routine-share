@@ -20,6 +20,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::middleware(['auth','can:isAdmin'])->group(function(){
+    Route::get('/admin','AdminController@index');
+});
+
 Route::get('/home','HomeController@index')->name('home');
 Route::get('/ranking','RankingController@index')->name('ranking');
 

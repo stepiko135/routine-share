@@ -64,7 +64,7 @@ class FavoritesTableSeeder extends Seeder
             ],
             // routine_id = 3　の評価
             [
-                'user_id' => 1,
+                'user_id' => 2,
                 'routine_id' => 3,
             ],
             [

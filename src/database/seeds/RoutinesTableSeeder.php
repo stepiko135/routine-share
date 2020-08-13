@@ -15,19 +15,19 @@ class RoutinesTableSeeder extends Seeder
         DB::table('routines')->insert([
             [
                 'id' => 1,
-                'user_id' => 1,
+                'user_id' => 2,
                 'name' => '平日モーニングルーティン',
                 'desc' => '早起きが苦手な私の平日ルーティンです。',
             ],
             [
                 'id' => 2,
-                'user_id' => 1,
+                'user_id' => 2,
                 'name' => '休日のルーティン',
                 'desc' => 'ゆったり過ごしたい休日におすすめのルーティンです！',
             ],
             [
                 'id' => 3,
-                'user_id' => 2,
+                'user_id' => 3,
                 'name' => 'モーニングルーティン',
                 'desc' => '忙しい平日でも続けている筋トレ好きな私のモーニングルーティンです。',
             ],

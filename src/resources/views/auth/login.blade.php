@@ -9,7 +9,7 @@
                 <br>
                 <h4 class="font center">
                     <span class="material-icons large">
-                    login
+                        login
                     </span>
                     ログイン</h4>
                 <div>
@@ -52,20 +52,23 @@
                             </div>
                         </div>
 
-                        <div class="row mb-0">
+                        <div class="row">
                             <div class="col s6 offset-s4">
                                 <button type="submit" class="btn-large">
                                     <span class="material-icons">
                                         login
-                                        </span>
-                                        ログイン
+                                    </span>
+                                    ログイン
                                 </button>
+                                <br>
                                 @if (Route::has('password.request'))
                                 <a class="grey-text" href="{{ route('password.request') }}">
                                     <span class="material-icons">
                                         error_outline
-                                        </span>
+                                    </span>
+                                    <small>
                                         パスワードを忘れましたか？
+                                    </small>
                                 </a>
                                 @endif
                             </div>

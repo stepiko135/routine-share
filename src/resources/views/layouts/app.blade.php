@@ -25,7 +25,7 @@
 
 <body>
     <div id="app" class="main-bg">
-        <nav class="nav-wrapper main">
+        <nav class="nav-wrapper main-color">
             <a class="brand-logo" href="/home">
                 <img src="{{asset('/img/logo.png')}}" alt="Routine Share" width="300px">
             </a>
@@ -102,6 +102,26 @@
             </ul>
             @endguest
         </nav>
+@can('isAdmin')  
+<nav>
+    <div class="nav-wrapper red lighten-3">
+        <a href="/admin" class=" font brand-logo left">管理者</a>
+        <ul class="right">
+            <li>
+                <a href="/admin">
+                    ユーザー管理
+                </a>
+            </li>
+            <li>
+                <a href="/admin/routine">
+                    投稿管理
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+@endcan
+
 
         <main>
             @yield('content')

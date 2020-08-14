@@ -5,21 +5,26 @@
     <span class="material-icons">
         sort
     </span>
-    ランキング</a>
-
+    ランキング
+</a>
 @foreach ($routines as $routine)
 <div class="row">
     <div class="col s12 m8 offset-m2  ">
         <div class="card z-depth-3">
             <div class="card-image">
-                
+
             </div>
             <div class="card-content">
+                @if (!$routine->user)
                 <p>
-                    <span class="material-icons">
-                        person_outline
-                    </span>
+                    <span class="material-icons">person_outline</span>
+                    ：削除されたユーザー
+                </p>
+                @else
+                <p>
+                    <span class="material-icons">person_outline</span>
                     ：{{$routine->user->name}}</p>
+                @endif
                 <p>タイトル：{{$routine->name}}</p>
                 <p>説明：{{$routine->desc}}</p>
             </div>

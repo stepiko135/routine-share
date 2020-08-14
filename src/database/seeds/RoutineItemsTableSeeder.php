@@ -14,35 +14,35 @@ class RoutineItemsTableSeeder extends Seeder
     {
         DB::table('routine_items')->insert([
             [
-                'user_id' => 1,
+                'user_id' => 2,
                 'routine_id' => 1,
                 'time' => '07:00:00',
                 'title' => 'スマートアラームで起床',
                 'desc' => '普通のアラームでは起きれない人におすすめです！',
             ],
             [
-                'user_id' => 1,
+                'user_id' => 2,
                 'routine_id' => 1,
                 'time' => '07:10:00',
                 'title' => 'コップ一杯の水を飲む',
                 'desc' => 'いきなり朝ごはん食べたりするとお腹に負担がかかるからまずは水を飲んで身体を目覚めさせます。',
             ],
             [
-                'user_id' => 1,
+                'user_id' => 2,
                 'routine_id' => 1,
                 'time' => '07:30:00',
                 'title' => '朝食',
                 'desc' => '時短でできるけどヘルシーなものを食べてます。１，スムージー　好きなグリーン野菜とバナナ、りんごで作ります。　２，ゆで卵　事前に茹でてあるので皮むけばすぐ食べれます。　３，ヨーグルト　お腹の調子を整えます。　スムージーの作り方は私のブログにも書いてるのでチェックしてみてください！　http://www.example-my-blog.jp',
             ],
             [
-                'user_id' => 1,
+                'user_id' => 2,
                 'routine_id' => 1,
                 'time' => '07:30:00',
                 'title' => 'テレビは見ない',
                 'desc' => 'ぼーっと眺めてしまうので、平日朝はテレビは見ません。代わりに好きな音楽を流して気持ちを上げます↑↑',
             ],
             [
-                'user_id' => 1,
+                'user_id' => 2,
                 'routine_id' => 1,
                 'time' => '07:45:00',
                 'title' => '出勤',

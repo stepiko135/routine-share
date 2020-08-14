@@ -81,7 +81,7 @@
             <!-- Dropdown Structure -->
             <ul id="dropdown1" class="dropdown-content">
                 <li>
-                    <a href="#">
+                    <a href="/profile/{{Auth::user()->name}}">
                         <span class="material-icons">
                             build_circle
                         </span>
@@ -102,25 +102,25 @@
             </ul>
             @endguest
         </nav>
-@can('isAdmin')  
-<nav>
-    <div class="nav-wrapper red lighten-3">
-        <a href="/admin" class=" font brand-logo left">管理者</a>
-        <ul class="right">
-            <li>
-                <a href="/admin">
-                    ユーザー管理
-                </a>
-            </li>
-            <li>
-                <a href="/admin/routine">
-                    投稿管理
-                </a>
-            </li>
-        </ul>
-    </div>
-</nav>
-@endcan
+        @can('isAdmin')
+        <nav>
+            <div class="nav-wrapper red lighten-3">
+                <a href="/admin" class=" font brand-logo left">管理者</a>
+                <ul class="right">
+                    <li>
+                        <a href="/admin">
+                            ユーザー管理
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/routine">
+                            投稿管理
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        @endcan
 
 
         <main>

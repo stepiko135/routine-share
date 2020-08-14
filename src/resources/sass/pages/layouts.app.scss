@@ -24,6 +24,7 @@ main{
     font-family: 'Kosugi Maru', sans-serif;
     color:#333;
 }
+
 // ナビゲーションバー横幅調整
 #app nav li {
     min-width: 155px;
@@ -38,5 +39,7 @@ main{
     font-size: 40px;
 }
 
-
-// Routine表示
+// お気に入りボタン
+.favorite{
+    color: #ffab40;
+}

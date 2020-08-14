@@ -2,10 +2,17 @@
 
 @section('content')
 <br>
-@foreach ($routines as $routine)
-<div class="row">
+@if (!count($routines)>0)
+<h5 class="font center">表示できるルーティンはありません。</h5>
+@else
+@foreach($routines as $routine) <div class="row">
+
     <div class="col s12 m8 offset-m2 card">
+        @if (!$routine->user)
+        <p>投稿者：削除されたユーザー</p>
+        @else
         <p>投稿者：{{$routine->user->name}}</p>
+        @endif
         <p>タイトル：{{$routine->name}}</p>
         <p>説明：{{$routine->desc}}</p>
 
@@ -18,4 +25,5 @@
     @csrf @method('DELETE')
 </form>
 @endforeach
+@endif
 @endsection

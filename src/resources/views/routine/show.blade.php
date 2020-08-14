@@ -5,7 +5,16 @@
     <div class="col s12 m9">
 
         <div class="card">
-            <p>投稿者：{{$routine->user->name}}</p>
+            @if (!$routine->user)
+            <p>
+                <span class="material-icons">person_outline</span>
+                ：削除されたユーザー
+            </p>
+            @else
+            <p>
+                <span class="material-icons">person_outline</span>
+                ：{{$routine->user->name}}</p>
+            @endif
             <p>ルーティン名：{{$routine->name}}</p>
             <p>説明：{{$routine->desc}}</p>
 
@@ -36,8 +45,7 @@
 
             {{-- 管理者削除ボタン --}}
             @can('isAdmin')
-            <a class="btn red lighten-2 right" href="/routine{{$routine->id}}" type="submit"
-                onclick="event.preventDefault();
+            <a class="btn red lighten-2 right" href="/routine{{$routine->id}}" type="submit" onclick="event.preventDefault();
                 document.getElementById('delete').submit();">削除</a>
             <form action="/routine/{{$routine->id}}" id="delete" method="POST">
                 @csrf @method('DELETE')

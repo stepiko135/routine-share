@@ -115,6 +115,11 @@ class RoutineController extends Controller
     public function destroy($id)
     {
         Routine::find($id)->delete();
-        return redirect('/mypage');
+        if(Auth::user()->role===1)
+        {
+            return redirect('/admin/routine');
+        }else{
+            return back();
+        }
     }
 }

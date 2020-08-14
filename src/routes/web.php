@@ -22,6 +22,8 @@ Auth::routes();
 
 Route::middleware(['auth','can:isAdmin'])->group(function(){
     Route::get('/admin','AdminController@index');
+    Route::get('/admin/routine','AdminController@routine');
+    Route::delete('/admin','AdminController@delete');
 });
 
 Route::get('/home','HomeController@index')->name('home');

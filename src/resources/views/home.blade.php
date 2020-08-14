@@ -7,8 +7,6 @@
     </span>
     ランキング
 </a>
-
-<a class="btn" href="/admin/">管理画面へ</a>
 @foreach ($routines as $routine)
 <div class="row">
     <div class="col s12 m8 offset-m2  ">

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Routine;
+use App\Http\Requests\ProfileRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
@@ -80,7 +82,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $userName)
+    public function update(ProfileRequest $request, $userName)
     {
         $user = User::where('name', $userName)->first();
         $user->profile = $request->profile;

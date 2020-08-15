@@ -9,6 +9,11 @@
 <div class="row">
     <div class="col s12 m8 offset-m2 card center">
         <img src="/images/profile/{{($user->image)}}" width="300px" height="300px" alt="プロフィール画像">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li class="red-text">{{$error}}</li>
+            @endforeach
+        </ul>
         <form action="/profile/{{$user->name}}" method="POST" enctype='multipart/form-data'>
             @csrf @method('PUT')
             <div class="file-field input-field">
@@ -24,8 +29,8 @@
                 <span class="material-icons">person_outline</span>
                 {{$user->name}}
             </h5>
-                    <textarea name="profile" id="profile" class="materialize-textarea">{{$user->profile}}</textarea>
-                    <input type="submit" class="btn" value="更新">
+            <textarea name="profile" id="profile" class="materialize-textarea">{{$user->profile}}</textarea>
+            <input type="submit" class="btn" value="更新">
         </form>
     </div>
 </div>

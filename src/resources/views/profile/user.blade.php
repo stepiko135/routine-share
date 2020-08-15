@@ -7,14 +7,15 @@
 @else
 {{-- プロフィール表示部分 --}}
 <div class="row">
-    <div class="col s12 m8 offset-m2 card">
-        <p>
+    <div class="col s12 m8 offset-m2 card center">
+        <img src="/images/profile/{{$user->image}}" width="300px" height="300px" alt="プロフィール画像">
+        <h5>
             <span class="material-icons">person_outline</span>
-            ：{{$user->name}}
-        </p>
-        <p>Profile：{{$user->profile}}</p>
+            {{$user->name}}
+        </h5>
+        <p>{{$user->profile}}</p>
         @if (Auth::id()===$user->id)
-        <a class="btn right" href="">編集</a>
+        <a class="btn right" href="/profile/{{$user->name}}/edit">編集</a>
         @endif
     </div>
 </div>

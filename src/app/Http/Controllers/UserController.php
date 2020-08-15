@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Routine;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -18,7 +19,7 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return view('profile.index',compact('users'));
+        return view('profile.index', compact('users'));
     }
 
     /**
@@ -50,10 +51,10 @@ class UserController extends Controller
      */
     public function show($userName)
     {
-        $user = User::where('name',$userName)->first();
-        $routines = Routine::where('user_id',$user->id)->get();
+        $user = User::where('name', $userName)->first();
+        $routines = Routine::where('user_id', $user->id)->get();
 
-        return view('profile.user',compact('user','routines'));
+        return view('profile.user', compact('user', 'routines'));
     }
 
     /**
@@ -64,9 +65,12 @@ class UserController extends Controller
      */
     public function edit($userName)
     {
-        $user = User::where('name',$userName)->first();
-
-        return view('profile.user',compact('user'));
+        $user = User::where('name', $userName)->first();
+        if ($user->id === Auth::id()) {
+            return view('profile.edit', compact('user'));
+        } else {
+            return redirect('/profile/' . $userName);
+        }
     }
 
     /**
@@ -76,9 +80,18 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $userName)
     {
-        //
+        $user = User::where('name', $userName)->first();
+        $user->profile = $request->profile;
+        if($request->image)
+        {
+            $filePath = $request->file('image')->store('images/profile');
+            $user->image = basename($filePath);
+        }
+        $user->save();
+
+        return redirect('/profile/' . $userName);
     }
 
     /**

@@ -37,3 +37,5 @@ Route::resource('/routine','RoutineController',['except'=>'index']);
 Route::resource('/routine-item','RoutineItemController',['except'=>'show']);
 
 Route::post('/favorite','FavoriteController@favorite');
+
+Route::resource('/profile','UserController');

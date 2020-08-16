@@ -10,11 +10,13 @@
 
 <div class="row">
     <div class="col s12 m8 offset-m2 card">
-        名前：{{$user->name}}
+        <p>名前：{{$user->name}}</p>
+        <p>{{$user->profile}}</p>
+
 
         <button class="btn red lighten-2 right" type="submit" onclick="event.preventDefault();
         document.getElementById('delete{{$loop->index}}').submit();">削除</button>
-        <a href="#" class="btn right" type="submit">投稿確認</a>
+        <a href="/profile/{{$user->name}}" class="btn right" type="submit">詳細</a>
     </div>
 </div>
 <form id="delete{{$loop->index}}" action="/admin" method="POST">

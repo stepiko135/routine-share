@@ -16,10 +16,12 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id()->unsigned();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('profile')->nullable();
+            $table->string('image')->default('default.png');
             // Role 1=admin, 5=normal user
             $table->tinyInteger('role')->default(5);
             $table->rememberToken();

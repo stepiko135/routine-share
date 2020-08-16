@@ -8,7 +8,8 @@
 {{-- プロフィール表示部分 --}}
 <div class="row">
     <div class="col s12 m8 offset-m2 card center">
-        <img src="/images/profile/{{($user->image)}}" width="300px" height="300px" alt="プロフィール画像">
+        <br>
+        <img src="/images/profile/{{($user->image)}}" width="300px" height="300px" alt="プロフィール画像" class="circle">
         <ul>
             @foreach ($errors->all() as $error)
             <li class="red-text">{{$error}}</li>

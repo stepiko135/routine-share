@@ -19,6 +19,8 @@ class UsersTableSeeder extends Seeder
                 'name' => '管理者',
                 'email' => 'admin@test.com',
                 'password' => Hash::make('admin'),
+                'image' => 'default.png',
+                'profile' => '',
                 'role' => 1,
             ],
             [
@@ -26,6 +28,8 @@ class UsersTableSeeder extends Seeder
                 'name' => 'ヒロ',
                 'email' => 'test2@test.com',
                 'password' => Hash::make('password'),
+                'image' => 'sky.jpeg',
+                'profile' => '',
                 'role' => 5,
             ],
             [
@@ -33,6 +37,8 @@ class UsersTableSeeder extends Seeder
                 'name' => 'イチロー',
                 'email' => 'test3@test.com',
                 'password' => Hash::make('password'),
+                'image' => 'baseball.jpg',
+                'profile' => '野球大好きです。',
                 'role' => 5,
             ],
             [
@@ -40,6 +46,8 @@ class UsersTableSeeder extends Seeder
                 'name' => '佐藤健',
                 'email' => 'test4@test.com',
                 'password' => Hash::make('password'),
+                'image' => 'surf.jpg',
+                'profile' => 'サーフィンが趣味',
                 'role' => 5,
             ],
             [
@@ -47,6 +55,8 @@ class UsersTableSeeder extends Seeder
                 'name' => 'あい',
                 'email' => 'test5@test.com',
                 'password' => Hash::make('password'),
+                'image' => 'girl2.jpeg',
+                'profile' => 'やっと社会人になりました！',
                 'role' => 5,
             ],
             [
@@ -54,12 +64,16 @@ class UsersTableSeeder extends Seeder
                 'name' => 'まんまる',
                 'email' => 'test6@test.com',
                 'password' => Hash::make('password'),
+                'image' => 'cat.jpg',
+                'profile' => 'ねこが大好きです！',
                 'role' => 5,
             ],[
                 'id' => 7,
                 'name' => 'Yoshy',
                 'email' => 'test7@test.com',
                 'password' => Hash::make('password'),
+                'image' => 'illust.jpeg',
+                'profile' => 'イラスト書くのが大好きです！',
                 'role' => 5,
             ],
             [
@@ -67,12 +81,16 @@ class UsersTableSeeder extends Seeder
                 'name' => 'ルビー',
                 'email' => 'test8@test.com',
                 'password' => Hash::make('password'),
+                'image' => 'girl.png',
+                'profile' => 'QOL高めたい！',
                 'role' => 5,
             ],[
                 'id' => 9,
                 'name' => 'とととん',
                 'email' => 'test9@test.com',
                 'password' => Hash::make('password'),
+                'image' => 'sky2.jpg',
+                'profile' => '',
                 'role' => 5,
             ],
             [
@@ -80,6 +98,8 @@ class UsersTableSeeder extends Seeder
                 'name' => 'まさと',
                 'email' => 'test10@test.com',
                 'password' => Hash::make('password'),
+                'image' => 'bird.jpg',
+                'profile' => 'よろしく',
                 'role' => 5,
             ],
             [
@@ -87,6 +107,8 @@ class UsersTableSeeder extends Seeder
                 'name' => 'Tomoya',
                 'email' => 'test11@test.com',
                 'password' => Hash::make('password'),
+                'image' => 'default.png',
+                'profile' => '',
                 'role' => 5,
             ],
         ]);

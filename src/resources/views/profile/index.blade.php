@@ -14,8 +14,11 @@
         </p>
         @else
         <p>
-            <span class="material-icons">person_outline</span>
-            ：{{$user->name}}</p>
+            <span class="material-icons">
+                <img src="/images/profile/{{$user->image}}" class="circle" alt="account_circle" width="37px"
+                    height="37px">
+            </span>
+            {{$user->name}}</p>
         @endif
         <p>Profile：{{$user->profile}}</p>
     </div>

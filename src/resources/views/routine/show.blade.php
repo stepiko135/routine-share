@@ -12,8 +12,12 @@
             </p>
             @else
             <p>
-                <span class="material-icons">person_outline</span>
-                ：{{$routine->user->name}}</p>
+                <span class="material-icons">
+                    <img src="/images/profile/{{$routine->user->image}}" class="circle" alt="account_circle" width="37px"
+                        height="37px">
+                </span>
+                {{$routine->user->name}}
+            </p>
             @endif
             <p>ルーティン名：{{$routine->name}}</p>
             <p>説明：{{$routine->desc}}</p>

@@ -20,7 +20,13 @@
                 <span class="card-title">Card Title</span> --}}
             </div>
             <div class="card-content">
-                <p>投稿者：{{$routine->user->name}}</p>
+                <p>
+                    <span class="material-icons">
+                        <img src="/images/profile/{{$routine->user->image}}" class="circle" alt="account_circle"
+                            width="37px" height="37px">
+                    </span>
+                    {{$routine->user->name}}
+                </p>
                 <p>タイトル：{{$routine->name}}</p>
                 <p>説明：{{$routine->desc}}</p>
             </div>

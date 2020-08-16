@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Routine;
-use App\Http\Requests\ProfileRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ProfileRequest;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 
 
@@ -86,11 +87,14 @@ class UserController extends Controller
     public function update(ProfileRequest $request, $userName)
     {
         $user = User::where('name', $userName)->first();
-        $user->profile = $request->profile;
         if ($request->image) {
+            if(!$user->image==='default.png'){
+                Storage::delete($user->image);
+            }
             $filePath = $request->file('image');
             Image::make($filePath)->fit(300, 300)->save($filePath);
             $filePath = $filePath->store('images/profile');
+            $user->image = basename($filePath);
         }
         $user->save();
 

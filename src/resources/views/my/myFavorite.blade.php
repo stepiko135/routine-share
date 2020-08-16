@@ -14,7 +14,13 @@
                 <span class="card-title">Card Title</span> --}}
             </div>
             <div class="card-content">
-                <p>投稿者：{{$favorite->user->name}}</p>
+                <p>
+                    <span class="material-icons">
+                        <img src="/images/profile/{{$favorite->user->image}}" class="circle" alt="account_circle"
+                            width="37px" height="37px">
+                    </span>
+                    {{$favorite->user->name}}
+                </p>
                 <p>タイトル：{{$favorite->name}}</p>
                 <p>内容：{{$favorite->desc}}</p>
             </div>

@@ -7,6 +7,7 @@ use App\Routine;
 use App\Http\Requests\ProfileRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\ImageManagerStatic as Image;
 
 
 class UserController extends Controller
@@ -86,10 +87,10 @@ class UserController extends Controller
     {
         $user = User::where('name', $userName)->first();
         $user->profile = $request->profile;
-        if($request->image)
-        {
-            $filePath = $request->file('image')->store('images/profile');
-            $user->image = basename($filePath);
+        if ($request->image) {
+            $filePath = $request->file('image');
+            Image::make($filePath)->fit(300, 300)->save($filePath);
+            $filePath = $filePath->store('images/profile');
         }
         $user->save();
 

@@ -2,8 +2,8 @@
 
 @section('content')
 <br>
-<a href="/routine/create" class="right btn-floating btn-large waves-effect waves-light"><i
-        class="material-icons">add</i></a>
+<a href="/routine/create" class="right btn-floating btn-large waves-effect waves-light tooltipped"
+    data-position="bottom" data-tooltip="ルーティンを作る"><i class="material-icons">add</i></a>
 @if (!count($routines)>0)
 <h5 class="font center">あたらしいルーティンを作ってみましょう！</h5>
 @else
@@ -23,8 +23,13 @@
                     </span>
                     {{$routine->user->name}}
                 </p>
-                <p>ルーティン：{{$routine->name}}</p>
-                <p>説明：{{$routine->desc}}</p>
+                <p>
+                    <span class="material-icons">
+                        import_contacts
+                    </span>
+                    ：{{$routine->name}}
+                </p>
+                <p>　　{{$routine->desc}}</p>
             </div>
             <div class="card-action">
                 {{-- Favoriteボタン --}}

@@ -7,6 +7,12 @@
     </span>
     ランキング
 </a>
+<a href="/profile" class="btn">
+    <span class="material-icons">
+        group
+    </span>
+    ユーザー一覧
+</a>
 @foreach ($routines as $routine)
 <div class="row">
     <div class="col s12 m8 offset-m2  ">
@@ -21,16 +27,21 @@
                     ：削除されたユーザー
                 </p>
                 @else
-                <p>
+                <a href="/profile/{{$routine->user->name}}">
                     <span class="material-icons">
                         <img src="/images/profile/{{$routine->user->image}}" class="circle" alt="account_circle"
                             width="37px" height="37px">
                     </span>
                     {{$routine->user->name}}
-                </p>
+                </a>
                 @endif
-                <p>タイトル：{{$routine->name}}</p>
-                <p>説明：{{$routine->desc}}</p>
+                <p>
+                    <span class="material-icons">
+                        import_contacts
+                    </span>
+                    ：{{$routine->name}}
+                </p>
+                <p>{{$routine->desc}}</p>
             </div>
             <div class="card-action">
                 {{-- Favoriteボタン --}}

@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col s12 m8 offset-m2 card center">
         <br>
-        <img src="/images/profile/{{($user->image)}}" width="300px" height="300px" alt="プロフィール画像" class="circle">
+        <img src="/images/profile/{{($user->image)}}" width="200px" height="200px" alt="プロフィール画像" class="circle">
         <ul>
             @foreach ($errors->all() as $error)
             <li class="red-text">{{$error}}</li>
@@ -30,7 +30,7 @@
                 <span class="material-icons">person_outline</span>
                 {{$user->name}}
             </h5>
-            <textarea name="profile" id="profile" class="materialize-textarea">{{$user->profile}}</textarea>
+            <textarea name="profile" id="profile" class="materialize-textarea" placeholder="よろしくお願いします！">{{$user->profile}}</textarea>
             <input type="submit" class="btn" value="更新">
         </form>
     </div>

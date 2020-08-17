@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col s12 m8 offset-m2 card center">
         <br>
-        <img src="/images/profile/{{$user->image}}" width="300px" height="300px" alt="プロフィール画像" class="circle">
+        <img src="/images/profile/{{$user->image}}" width="200px" height="200px" alt="プロフィール画像" class="circle">
         <h5>
             <span class="material-icons">person_outline</span>
             {{$user->name}}
@@ -29,8 +29,13 @@
 @foreach ($routines as $routine)
 <div class="row">
     <div class="col s10 offset-s1 m6 offset-m3 card">
-        <p>タイトル：{{$routine->name}}</p>
-        <p>説明：{{$routine->desc}}</p>
+        <p>
+            <span class="material-icons">
+                import_contacts
+            </span>
+            ：{{$routine->name}}
+        </p>
+        <p>{{$routine->desc}}</p>
         <span class="material-icons favorite">
             star
         </span>{{$routine->favorites->count()}}

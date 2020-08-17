@@ -16,18 +16,21 @@
     <div class="col s12 m8 offset-m2">
         <div class="card z-depth-3">
             <div class="card-image">
-                {{-- <img src="images/sample-1.jpg">
-                <span class="card-title">Card Title</span> --}}
             </div>
             <div class="card-content">
-                <p>
+                <a href="/profile/{{$routine->user->name}}">
                     <span class="material-icons">
                         <img src="/images/profile/{{$routine->user->image}}" class="circle" alt="account_circle"
                             width="37px" height="37px">
                     </span>
                     {{$routine->user->name}}
+                </a>
+                <p>
+                    <span class="material-icons">
+                        import_contacts
+                    </span>
+                    ：{{$routine->name}}
                 </p>
-                <p>タイトル：{{$routine->name}}</p>
                 <p>説明：{{$routine->desc}}</p>
             </div>
             <div class="card-action">

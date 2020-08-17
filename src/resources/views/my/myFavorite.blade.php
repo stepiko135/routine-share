@@ -14,15 +14,20 @@
                 <span class="card-title">Card Title</span> --}}
             </div>
             <div class="card-content">
-                <p>
+                <a href="/profile/{{$favorite->user->name}}">
                     <span class="material-icons">
                         <img src="/images/profile/{{$favorite->user->image}}" class="circle" alt="account_circle"
                             width="37px" height="37px">
                     </span>
                     {{$favorite->user->name}}
+                </a>
+                <p>
+                    <span class="material-icons">
+                        import_contacts
+                    </span>
+                    ：{{$favorite->name}}
                 </p>
-                <p>タイトル：{{$favorite->name}}</p>
-                <p>内容：{{$favorite->desc}}</p>
+                <p>  {{$favorite->desc}}</p>
             </div>
             <div class="card-action">
                 <a class="btn right" href="/routine/{{$favorite->id}}">ルーティンを見る

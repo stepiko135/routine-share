@@ -22,7 +22,12 @@
                 </p>
                 @endif
                 <br>
-                <p>タイトル：{{$routine->name}}</p>
+                <p>
+                    <span class="material-icons">
+                        import_contacts
+                    </span>
+                    ：{{$routine->name}}
+                </p>
                 <p>{{$routine->desc}}</p>
 
                 {{-- Favoriteボタン --}}
@@ -85,8 +90,6 @@
                         <p>{{$routineItem->desc}}</p>
                     </div>
                 </li>
-                {{-- <div class="card">
-                </div> --}}
                 @endforeach
             </ul>
         </section>

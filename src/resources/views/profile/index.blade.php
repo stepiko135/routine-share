@@ -5,6 +5,11 @@
 <h5 class="font center">ユーザーがいません。</h5>
 @else
 @foreach ($users as $user)
+{{-- 管理者非表示 --}}
+@if ($loop->first)
+@continue
+@endif
+
 <div class="row">
     <div class="col s12 m8 offset-m2 card">
         @if (!$user->name)
@@ -13,14 +18,14 @@
             ：削除されたユーザー
         </p>
         @else
-        <p>
+        <a href="/profile/{{$user->name}}">
             <span class="material-icons">
                 <img src="/images/profile/{{$user->image}}" class="circle" alt="account_circle" width="37px"
                     height="37px">
             </span>
-            {{$user->name}}</p>
-        @endif
-        <p>Profile：{{$user->profile}}</p>
+            {{$user->name}}</a>
+            @endif
+            <p>Profile：{{$user->profile}}</p>
     </div>
 </div>
 @endforeach

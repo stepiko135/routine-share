@@ -8,10 +8,9 @@ $(document).ready(function() {
     $(".dropdown-trigger").dropdown({
         coverTrigger: false
     });
+    $(".modal").modal();
+    $('.tooltipped').tooltip();
 
-    $(document).ready(function() {
-        $(".modal").modal();
-    });
 });
 
 /*
@@ -53,3 +52,4 @@ $(document).ready(function() {
     window.addEventListener("resize", callbackFunc);
     window.addEventListener("scroll", callbackFunc);
 })();
+

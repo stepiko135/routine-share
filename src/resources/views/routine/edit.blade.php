@@ -6,7 +6,8 @@
     <span class="material-icons">
         create
     </span>
-    ルーティンの編集</h5>
+    ルーティンの編集
+</h5>
 <br>
 <div class="row">
     <div class="col s12 m10 offset-m1 card">
@@ -54,7 +55,8 @@
     <span class="material-icons">
         add
     </span>
-    新しいアイテムを追加</h5>
+    新しいアイテムを追加
+</h5>
 @if ($errors)
 <ul>
     @foreach ($errors->all() as $error)
@@ -65,7 +67,7 @@
 <div class="row">
     <div class="col s12 m8 offset-m2 card">
         <br>
-        <form action="/routine_item/" id="submitItems" class="items" method="POST">
+        <form action="/routine-item/" id="submitItems" class="items" method="POST">
             @csrf
             <input type="hidden" name="user_id" value="{{Auth::id()}}">
             <input type="hidden" name="routine_id" value="{{$routine->id}}">
@@ -101,17 +103,21 @@
 </div>
 
 {{-- 既存ルーティンアイテム編集、削除 --}}
+@if ($items->count()>0)
 <h5 class="font center">
     <span class="material-icons">
         create
     </span>
-    アイテムを編集</h5>
+    アイテムを編集
+</h5>
+@endif
+
 @foreach ($items as $item)
-<form action="/routine_item/{{$item->id}}" method="POST">
-    @csrf @method('PUT')
-    <input type="hidden" name="user_id" value="{{Auth::id()}}">
-    <input type="hidden" name="routine_id" value="{{$routine->id}}">
-    <div class="row">
+<div class="row">
+    <form action="/routine-item/{{$item->id}}" method="POST">
+        @csrf @method('PUT')
+        <input type="hidden" name="user_id" value="{{Auth::id()}}">
+        <input type="hidden" name="routine_id" value="{{$routine->id}}">
         <div class="col s12 m8 offset-m2 card">
             <br>
             <div class="row">
@@ -133,18 +139,17 @@
                             placeholder="(例) 濃いめのコーヒーがおすすめです！">{{$item->desc}}</textarea></label>
                     <div class="center">
                         <button type="submit" class="btn">編集</button>
-                        <a href="/routine_item/{{$item->id}}" class="btn red lighten-2" onclick="event.preventDefault();
-                    document.getElementById('delete-item').submit()">削除</a>
+                        <a href="/routine-item/{{$item->id}}" class="btn red lighten-2" onclick="event.preventDefault();
+                    document.getElementById('delete-item{{$item->id}}').submit()">削除</a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</form>
-
-<form id="delete-item" action="/routine_item/{{$item->id}}" method="POST">
-    @csrf @method('DELETE')
-</form>
+    </form>
+    <form id="delete-item{{$item->id}}" action="/routine-item/{{$item->id}}" method="POST">
+        @csrf @method('DELETE')
+    </form>
+</div>
 @endforeach
 <button class="btn" type="button" onclick="history.back()">
     <span class="material-icons">

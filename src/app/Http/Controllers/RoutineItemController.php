@@ -24,8 +24,8 @@ class RoutineItemController extends Controller
     public function index()
     {
         $userId = Auth::id();
-        $routineItems = RoutineItem::where('user_id',$userId)->get();
-        return view('routineItem.index',compact('routineItems'));
+        $routineItems = RoutineItem::where('user_id', $userId)->get();
+        return view('routineItem.index', compact('routineItems'));
     }
 
     /**
@@ -34,13 +34,13 @@ class RoutineItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
-    {   
-        //リンク元からroutine_idを取得 
+    {
+        //リンク元からroutine_idを取得
         $routine_id = $request->id;
 
-        return view('routineItem.create',compact('routine_id'));
+        return view('routineItem.create', compact('routine_id'));
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -55,7 +55,6 @@ class RoutineItemController extends Controller
         $routineItem->fill($forms)->save();
         $id = $request->routine_id;
         return back();
-
     }
 
     /**
@@ -64,7 +63,7 @@ class RoutineItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
+
 
     /**
      * Show the form for editing the specified resource.
@@ -102,6 +101,8 @@ class RoutineItemController extends Controller
     public function destroy($id)
     {
         RoutineItem::find($id)->delete();
+        // return redirect('/routine/'.$id->routine_id.'/edit');
+        // return redirect('/home');
         return back();
     }
 }

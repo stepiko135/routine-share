@@ -1,7 +1,12 @@
 FROM php:7.3-fpm-alpine
 LABEL maintainer "hiro"
 
-ARG TZ
+COPY ./src /work
+COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
+
+# timezone
+ARG TZ=Asia/Tokyo
+
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /composer
 

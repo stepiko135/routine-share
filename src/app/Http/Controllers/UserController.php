@@ -88,13 +88,18 @@ class UserController extends Controller
     {
         $user = User::where('name', $userName)->first();
         if ($request->image) {
-            if(!$user->image==='default.png'){
-                Storage::delete($user->image);
+            // 設定済みの写真があれば削除する
+            // $user->imageは画像のフルパスの為ファイル名だけ取り出す。
+            $oldImage = basename($user->image);
+            if ($oldImage !== 'default.png') {
+                // S3のprofileフォルダにあるため"profile/"を追記
+                Storage::disk('s3')->delete("profile/" . $oldImage);
             }
-            $filePath = $request->file('image');
-            Image::make($filePath)->fit(300, 300)->save($filePath);
-            $filePath = $filePath->store('images/profile');
-            $user->image = basename($filePath);
+            $image = $request->file('image');
+            // 画像を正方形に整形
+            Image::make($image)->fit(300, 300)->save($image);
+            $path = Storage::disk('s3')->putFile('profile', $image, 'public');
+            $user->image = Storage::disk('s3')->url($path);
         }
         $user->save();
 

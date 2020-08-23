@@ -15,7 +15,7 @@
                 @else
                 <p>
                     <span class="material-icons">
-                        <img src="/images/profile/{{$routine->user->image}}" class="circle" alt="account_circle"
+                        <img src="{{$routine->user->image}}" class="circle" alt="account_circle"
                             width="37px" height="37px">
                     </span>
                     {{$routine->user->name}}

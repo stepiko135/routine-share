@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('profile')->nullable();
-            $table->string('image')->default('default.png');
+            $table->string('image')->default('https://routine-share.s3-ap-northeast-1.amazonaws.com/profile/default.png');
             // Role 1=admin, 5=normal user
             $table->tinyInteger('role')->default(5);
             $table->rememberToken();

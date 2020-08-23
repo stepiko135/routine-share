@@ -96,7 +96,7 @@
     </div>
     <div class="col s12 m3">
         {{-- コメント欄表示 --}}
-        コメント欄表示
+        コメント欄
     </div>
 </div>
 <button class="btn" type="button" onclick="history.back()">もどる</button>

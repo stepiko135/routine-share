@@ -19,7 +19,6 @@ class ExampleTest extends TestCase
             'email'    => 'test2@test.com',
             'password' => 'password'
         ]);
-        $this->get('/home')->assertStatus(200);
 
         $this->get('/profile')->assertStatus(200);
         $this->get('/profile/ヒロ/edit')->assertStatus(200);

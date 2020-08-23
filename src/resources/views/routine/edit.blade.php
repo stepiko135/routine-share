@@ -41,6 +41,10 @@
                         <button type="submit" class="btn">更新</button>
                         <button type="reset" class="btn red lighten-2">クリア</button>
                     </div>
+                    <br>
+                    <div class="center">
+                        <a class="btn" href="{{action('RoutineController@show',['routine' => $routine->id ])}}">ページで確認する</a>
+                    </div>
                 </div>
             </div>
 

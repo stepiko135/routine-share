@@ -67,7 +67,7 @@
 <div class="row">
     <div class="col s12 m8 offset-m2 card">
         <br>
-        <form action="/routine-item/" id="submitItems" class="items" method="POST">
+        <form action="/routine-item" id="submitItems" class="items" method="POST">
             @csrf
             <input type="hidden" name="user_id" value="{{Auth::id()}}">
             <input type="hidden" name="routine_id" value="{{$routine->id}}">

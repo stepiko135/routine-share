@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 
 @section('content')
 routine item 一覧
@@ -17,4 +17,4 @@ routine item 一覧
     </form>
 </div>
 @endforeach
-@endsection
+@endsection --}}

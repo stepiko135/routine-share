@@ -33,8 +33,10 @@
                     <br>
                     <div class="center">
                         <button type="submit" class="btn">作成</button>
-                        <button type="reset" class="btn">やりなおす</button>
-                        <a class="btn" href="/">続けてアイテムを作る</a>
+                        <button type="reset" class="btn red lighten-2">やりなおす</button>
+                    </div>
+                    <div class="center">
+                        <a href="{{}}"></a>
                     </div>
                 </div>
             </div>

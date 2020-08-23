@@ -13,7 +13,7 @@ class RoutineController extends Controller
     // ログインされていなければログイン画面に返す
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('show');
     }
 
 
@@ -30,7 +30,6 @@ class RoutineController extends Controller
      */
     public function create()
     {
-        // そのままRoutineItemの作成ページに遷移させる
         return view('routine.create');
     }
 
@@ -47,8 +46,10 @@ class RoutineController extends Controller
         $forms = $request->all();
         unset($forms['_token']);
         $routine->fill($forms)->save();
-        // 今はmypageにリダイレクト
-        return redirect('mypage/');
+        // そのまま作成したルーティンのアイテム作成ページへ遷移
+        // return redirect('mypage/');
+        $id = $routine->id;
+        return redirect()->action('RoutineController@edit',['routine' => $id]);
     }
 
     /**
@@ -59,8 +60,9 @@ class RoutineController extends Controller
      */
     public function show($id)
     {
+        // ルーティンアイテムを取得して時間順に並べる
         $routine = Routine::find($id);
-        $routineItems = RoutineItem::where('routine_id',$id)->get();
+        $routineItems = RoutineItem::where('routine_id',$id)->orderBy('time','asc')->get();
 
         return view('routine.show',compact('routine','routineItems'));
     }
@@ -73,13 +75,13 @@ class RoutineController extends Controller
      */
     public function edit($id)
     {
-        //アイテムがあれば表示させる
-        $items = RoutineItem::where('routine_id',$id)->get();
-        
+        //アイテムがあれば取得して時間順に表示させる
+        $items = RoutineItem::where('routine_id',$id)->orderBy('time','asc')->get();
+
         // 自分以外の投稿を編集しようとしたら/homeへリダイレクト
         $longinUserId = Auth::id();
         $routineOwnerId = Routine::find($id)->user_id;
-        
+
         if($longinUserId === $routineOwnerId)
         {
             $routine = Routine::find($id);

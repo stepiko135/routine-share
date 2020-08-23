@@ -72,7 +72,7 @@
                 <li>
                     <a data-target="dropdown1" class="dropdown-trigger" href="#" role="button">
                         <span class="material-icons">
-                        <img src="/images/profile/{{Auth::user()->image}}"  class="circle" alt="account_circle" width="37px" height="37px">
+                        <img src="{{Auth::user()->image}}"  class="circle" alt="account_circle" width="37px" height="37px">
                         </span>
                         {{ Auth::user()->name }} <span><i class="material-icons right">arrow_drop_down</i></span>
                     </a>

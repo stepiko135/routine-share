@@ -16,7 +16,7 @@
             <div class="card-content">
                 <a href="/profile/{{$favorite->user->name}}">
                     <span class="material-icons">
-                        <img src="/images/profile/{{$favorite->user->image}}" class="circle" alt="account_circle"
+                        <img src="{{$favorite->user->image}}" class="circle" alt="account_circle"
                             width="37px" height="37px">
                     </span>
                     {{$favorite->user->name}}

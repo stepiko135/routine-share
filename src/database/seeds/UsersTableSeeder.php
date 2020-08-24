@@ -67,7 +67,8 @@ class UsersTableSeeder extends Seeder
                 'image' => 'https://routine-share.s3-ap-northeast-1.amazonaws.com/profile/cat.jpg',
                 'profile' => 'ねこが大好きです！ねこを７匹飼ってます！！',
                 'role' => 5,
-            ],[
+            ],
+            [
                 'id' => 7,
                 'name' => 'Yoshy',
                 'email' => 'test7@test.com',
@@ -84,7 +85,8 @@ class UsersTableSeeder extends Seeder
                 'image' => 'https://routine-share.s3-ap-northeast-1.amazonaws.com/profile/girl.png',
                 'profile' => 'QOL高めたい！',
                 'role' => 5,
-            ],[
+            ],
+            [
                 'id' => 9,
                 'name' => 'とととん',
                 'email' => 'test9@test.com',
@@ -134,7 +136,7 @@ class UsersTableSeeder extends Seeder
                 'name' => 'ゲスト',
                 'email' => 'guest@test.com',
                 'password' => Hash::make('mA7SkEJU'),
-                'image' => 'https://routine-share.s3-ap-northeast-1.amazonaws.com/profile/car.png',
+                'image' => 'https://routine-share.s3-ap-northeast-1.amazonaws.com/profile/car.jpg',
                 'profile' => '私はゲストユーザーです。',
                 'role' => 5,
             ],

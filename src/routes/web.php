@@ -26,7 +26,7 @@ Route::get('/','HomeController@index')->name('home');
 Route::get('/ranking','RankingController@index')->name('ranking');
 
 Route::get('/mypage','MyPageController@myPage')->name('mypage');
-Route::get('/my-favorite','MypageController@myFavorite')->name('my-favorite');
+Route::get('/my-favorite','MypageController@myFavorite');
 
 Route::resource('/routine','RoutineController',['except'=>'index']);
 

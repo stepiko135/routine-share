@@ -10,8 +10,6 @@
     <div class="col s12 m8 offset-m2">
         <div class="card">
             <div class="card-image">
-                {{-- <img src="images/sample-1.jpg">
-                <span class="card-title">Card Title</span> --}}
             </div>
             <div class="card-content">
                 <a href="/profile/{{$favorite->user->name}}">
@@ -41,7 +39,7 @@
 @endforeach
 @else
 <h5>お気に入りに追加してみよう</h5>
-<a class="btn" href="/home">探しに行く</a>
+<a class="btn" href="{{route('home')}}">探しに行く</a>
 @endif
 <button class="btn" type="button" onclick="history.back()">
     <span class="material-icons">

@@ -95,6 +95,7 @@
         </section>
     </div>
     <div class="col s12 m3">
+    <br><br>
         {{-- コメント欄表示 --}}
         コメント欄
     </div>

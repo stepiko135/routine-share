@@ -9,6 +9,7 @@ $(document).ready(function() {
         coverTrigger: false
     });
     $(".modal").modal();
+    $(".sidenav").sidenav();
     $('.tooltipped').tooltip();
 
 });

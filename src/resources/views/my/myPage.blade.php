@@ -3,9 +3,9 @@
 @section('content')
 <br>
 <a href="/routine/create" class="right btn-floating btn-large waves-effect waves-light tooltipped"
-    data-position="bottom" data-tooltip="ルーティンを作る"><i class="material-icons">add</i></a>
+    data-position="bottom" data-tooltip="ルーティンを作る"><i class="material-icons">add</i></a><br>
 @if (!count($routines)>0)
-<h5 class="font center">あたらしいルーティンを作ってみましょう！</h5>
+<br><br><h5 class="font center">あたらしいルーティンを作ってみましょう！</h5><br><br>
 @else
 <br><br>
 @foreach ($routines as $routine)

@@ -19,7 +19,7 @@
                             <div class="col s12 m8 offset-m2 input-field">
                                 <label for="email">メールアドレス</label>
                                 <input id="email" type="email" class=" @error('email') is-invalid @enderror"
-                                    name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                    name="email" value="{{ old('email') }}" autocomplete="email" autofocus>
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -32,7 +32,7 @@
                             <div class="col s12 m8 offset-m2 input-field">
                                 <label for="password">パスワード</label>
                                 <input id="password" type="password" class="@error('password') is-invalid @enderror"
-                                    name="password" required autocomplete="current-password">
+                                    name="password" autocomplete="current-password">
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -52,26 +52,34 @@
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col s6 offset-s4">
-                                <button type="submit" class="btn-large">
+                        <div class="center">
+                            <button type="submit" class="btn-large">
+                                <span class="material-icons">
+                                    login
+                                </span>
+                                ログイン
+                            </button>
+                            <form method="POST" action="{{ route('login') }}">@csrf
+                                <input type="hidden" name="email" value="guest@test.com">
+                                <input type="hidden" name="password" value="mA7SkEJU">
+                                <button class="btn-large red lighten-2" type="submit">
                                     <span class="material-icons">
-                                        login
+                                        done_outline
                                     </span>
-                                    ログイン
+                                    かんたんログイン
                                 </button>
-                                <br>
-                                @if (Route::has('password.request'))
-                                <a class="grey-text" href="{{ route('password.request') }}">
-                                    <span class="material-icons">
-                                        error_outline
-                                    </span>
-                                    <small>
-                                        パスワードを忘れましたか？
-                                    </small>
-                                </a>
-                                @endif
-                            </div>
+                            </form>
+                            <br>
+                            @if (Route::has('password.request'))
+                            <a class="grey-text" href="{{ route('password.request') }}">
+                                <span class="material-icons">
+                                    error_outline
+                                </span>
+                                <small>
+                                    パスワードを忘れましたか？
+                                </small>
+                            </a>
+                            @endif
                         </div>
                         <br>
                     </form>

@@ -26,7 +26,7 @@
 <body>
     <div id="app" class="main-bg">
         <nav class="nav-wrapper main-color">
-        <a class="brand-logo" href="{{route('home')}}">
+            <a class="brand-logo" href="{{route('home')}}">
                 <img src="{{asset('/img/logo.png')}}" alt="Routine Share" width="300px">
             </a>
             <!-- {{-- 導入したいもの　scrollspy Toasts  character-counter --}} -->
@@ -35,6 +35,18 @@
             @guest
             {{-- ログインしていないと表示 --}}
             <ul class="right">
+                <li>
+                    <form method="POST" action="{{ route('login') }}">@csrf
+                        <input type="hidden" name="email" value="guest@test.com">
+                        <input type="hidden" name="password" value="mA7SkEJU">
+                        <button class="btn red lighten-2" type="submit">
+                            <span class="material-icons">
+                                done_outline
+                            </span>
+                            かんたんログイン
+                        </button>
+                    </form>
+                </li>
                 <li>
                     <a href="{{ route('login') }}">
                         <span class="material-icons">
@@ -72,7 +84,8 @@
                 <li>
                     <a data-target="dropdown1" class="dropdown-trigger" href="#" role="button">
                         <span class="material-icons">
-                        <img src="{{Auth::user()->image}}"  class="circle" alt="account_circle" width="37px" height="37px">
+                            <img src="{{Auth::user()->image}}" class="circle" alt="account_circle" width="37px"
+                                height="37px">
                         </span>
                         {{ Auth::user()->name }} <span><i class="material-icons right">arrow_drop_down</i></span>
                     </a>

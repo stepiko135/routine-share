@@ -111,6 +111,15 @@ class UsersTableSeeder extends Seeder
                 'profile' => '',
                 'role' => 5,
             ],
+            [
+                'id' => 12,
+                'name' => 'ゲスト',
+                'email' => 'guest@test.com',
+                'password' => Hash::make('mA7SkEJU'),
+                'image' => 'https://routine-share.s3-ap-northeast-1.amazonaws.com/profile/default.png',
+                'profile' => '私はゲストユーザーです。',
+                'role' => 5,
+            ],
         ]);
     }
 }

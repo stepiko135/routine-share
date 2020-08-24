@@ -52,4 +52,3 @@ $(document).ready(function() {
     window.addEventListener("resize", callbackFunc);
     window.addEventListener("scroll", callbackFunc);
 })();
-

@@ -2,6 +2,10 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-176138945-1"></script>
+    <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-176138945-1');</script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -132,7 +136,7 @@
                 </form>
             </li>
             <li>
-                <a class="font"　href="{{ route('login') }}">
+                <a class="font" 　href="{{ route('login') }}">
                     <span class="material-icons">
                         login
                     </span>
@@ -140,7 +144,7 @@
             </li>
             @if (Route::has('register'))
             <li>
-                <a class="font"　href="{{ route('register') }}">
+                <a class="font" 　href="{{ route('register') }}">
                     <span class="material-icons">
                         assignment_turned_in
                     </span>
@@ -151,38 +155,40 @@
         @else
         {{-- モバイルでログインしているとき表示 --}}
         <ul class="sidenav" id="for-mobile">
-            <li><div class="user-view">
-                <div class="background main-color">
-                  {{-- <img src="{{Auth::user()->image}}"> --}}
-
-                </div>
-                <a href="#user"><img class="circle" src="{{Auth::user()->image}}"></a>
-                <a href="#name"><span class="white-text name">{{ Auth::user()->name }}</span></a>
-                <a href="#email"><span class="white-text email">{{ Auth::user()->email }}</span></a>
-              </div></li>
             <li>
-                <a class="font"　href="/profile/{{Auth::user()->name}}">
+                <div class="user-view">
+                    <div class="background main-color">
+                        {{-- <img src="{{Auth::user()->image}}"> --}}
+
+                    </div>
+                    <a href="#user"><img class="circle" src="{{Auth::user()->image}}"></a>
+                    <a href="#name"><span class="white-text name">{{ Auth::user()->name }}</span></a>
+                    <a href="#email"><span class="white-text email">{{ Auth::user()->email }}</span></a>
+                </div>
+            </li>
+            <li>
+                <a class="font" 　href="/profile/{{Auth::user()->name}}">
                     <span class="material-icons">
                         build_circle
                     </span>
                     プロフィール</a>
             </li>
             <li>
-                <a class="font"　href="/my-favorite">
+                <a class="font" 　href="/my-favorite">
                     <span class="material-icons">
                         bookmark_border
                     </span>
                     お気に入り</a>
             </li>
             <li>
-                <a class="font"　href="/mypage">
+                <a class="font" 　href="/mypage">
                     <span class="material-icons">
                         fact_check
                     </span>
                     マイページ</a>
             </li>
             <li>
-                <a class="font"　href="{{ route('logout') }}" onclick="event.preventDefault();
+                <a class="font" 　href="{{ route('logout') }}" onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
                     <span class="material-icons">
                         exit_to_app

@@ -31,7 +31,7 @@
     <div id="app" class="main-bg">
         <nav class="nav-wrapper main-color">
             <a class="brand-logo" href="{{route('home')}}">
-                <img src="{{asset('/img/logo.png')}}" alt="Routine Share" width="260px">
+                <img src="{{asset('/img/logo.png')}}?20200826" alt="Routine Share" width="220px" />
             </a>
             <!-- {{-- 導入したいもの　scrollspy Toasts  character-counter --}} -->
             <!-- Right Side Of Navbar -->

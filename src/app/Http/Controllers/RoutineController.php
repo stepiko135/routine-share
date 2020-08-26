@@ -49,7 +49,7 @@ class RoutineController extends Controller
         // そのまま作成したルーティンのアイテム作成ページへ遷移
         // return redirect('mypage/');
         $id = $routine->id;
-        return redirect()->action('RoutineController@edit',['routine' => $id]);
+        return redirect()->action('RoutineItemController@edit',['routineId' => $id]);
     }
 
     /**
@@ -75,9 +75,6 @@ class RoutineController extends Controller
      */
     public function edit($id)
     {
-        //アイテムがあれば取得して時間順に表示させる
-        $items = RoutineItem::where('routine_id',$id)->orderBy('time','asc')->get();
-
         // 自分以外の投稿を編集しようとしたら/homeへリダイレクト
         $longinUserId = Auth::id();
         $routineOwnerId = Routine::find($id)->user_id;
@@ -85,9 +82,9 @@ class RoutineController extends Controller
         if($longinUserId === $routineOwnerId)
         {
             $routine = Routine::find($id);
-            return view('routine.edit', compact('routine','items'));
+            return view('routine.edit', compact('routine'));
         }else{
-            return redirect('/home');
+            return redirect(route('home'));
         }
     }
 
@@ -105,7 +102,7 @@ class RoutineController extends Controller
         $forms = $request->all();
         unset($forms['_token']);
         $routine->fill($forms)->save();
-        return redirect('/mypage');
+        return redirect()->action('RoutineItemController@edit', ['routineId' => $id]);
     }
 
     /**

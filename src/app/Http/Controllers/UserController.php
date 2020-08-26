@@ -87,6 +87,7 @@ class UserController extends Controller
     public function update(ProfileRequest $request, $userName)
     {
         $user = User::where('name', $userName)->first();
+        $user->profile = $request->profile;
         if ($request->image) {
             // 設定済みの写真があれば削除する
             // $user->imageは画像のフルパスの為ファイル名だけ取り出す。

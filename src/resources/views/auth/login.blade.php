@@ -59,33 +59,33 @@
                                 </span>
                                 ログイン
                             </button>
-                            <form method="POST" action="{{ route('login') }}">@csrf
-                                <input type="hidden" name="email" value="guest@test.com">
-                                <input type="hidden" name="password" value="mA7SkEJU">
-                                <button class="btn-large red lighten-2" type="submit">
-                                    <span class="material-icons">
-                                        done_outline
-                                    </span>
-                                    かんたんログイン
-                                </button>
-                            </form>
-                            <br>
-                            @if (Route::has('password.request'))
-                            <a class="grey-text" href="{{ route('password.request') }}">
-                                <span class="material-icons">
-                                    error_outline
-                                </span>
-                                <small>
-                                    パスワードを忘れましたか？
-                                </small>
-                            </a>
-                            @endif
-                        </div>
-                        <br>
                     </form>
+                    <form method="POST" action="{{ route('login') }}">@csrf
+                        <input type="hidden" name="email" value="guest@test.com">
+                        <input type="hidden" name="password" value="mA7SkEJU">
+                        <button class="btn-large red lighten-2" type="submit">
+                            <span class="material-icons">
+                                done_outline
+                            </span>
+                            かんたんログイン
+                        </button>
+                    </form>
+                    <br>
+                    @if (Route::has('password.request'))
+                    <a class="grey-text" href="{{ route('password.request') }}">
+                        <span class="material-icons">
+                            error_outline
+                        </span>
+                        <small>
+                            パスワードを忘れましたか？
+                        </small>
+                    </a>
+                    @endif
                 </div>
+                <br>
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

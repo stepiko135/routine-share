@@ -13,7 +13,7 @@
                     <div class="input-field col s12 m8 offset-m2">
                         <label for="name">名前</label>
                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                            name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                            name="name" value="{{ old('name') }}" required autocomplete="name">
                         @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -51,7 +51,7 @@
 
                 <div class="row">
                     <div class="input-field col s12 m8 offset-m2">
-                        <label for="password-confirm">メールアドレス確認</label>
+                        <label for="password-confirm">パスワード確認</label>
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
                             required autocomplete="new-password">
                     </div>

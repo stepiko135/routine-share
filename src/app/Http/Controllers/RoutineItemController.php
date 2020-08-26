@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Routine;
 use App\RoutineItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,31 +16,6 @@ class RoutineItemController extends Controller
     {
         $this->middleware('auth');
     }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function index()
-    // {
-    //     $userId = Auth::id();
-    //     $routineItems = RoutineItem::where('user_id', $userId)->get();
-    //     return view('routineItem.index', compact('routineItems'));
-    // }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function create(Request $request)
-    // {
-    //     //リンク元からroutine_idを取得
-    //     $routine_id = $request->id;
-
-    //     return view('routineItem.create', compact('routine_id'));
-    // }
 
     /**
      * Store a newly created resource in storage.
@@ -58,23 +34,25 @@ class RoutineItemController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function edit($id)
-    // {
-        //
-    // }
+    public function edit($routineId)
+    {
+        // 自分以外の投稿を編集しようとしたら/homeへリダイレクト
+        $longinUserId = Auth::id();
+        $routineOwnerId = Routine::find($routineId)->user_id;
+
+        if ($longinUserId === $routineOwnerId) {
+            //アイテムがあれば取得して時間順に表示させる
+            $items = RoutineItem::where('routine_id', $routineId)->orderBy('time', 'asc')->get();
+            return view('routineItem.edit', compact('items','routineId'));
+        } else {
+            return redirect(route('home'));
+        }
+    }
 
     /**
      * Update the specified resource in storage.

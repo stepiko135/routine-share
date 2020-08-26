@@ -13,6 +13,11 @@
     </span>
     ユーザー一覧
 </a>
+<a href="/routine/create" class="right btn-floating btn-large waves-effect waves-light tooltipped"
+    data-position="bottom" data-tooltip="ルーティンを作る">
+    <i class="material-icons">add</i>
+</a>
+<br>
 @foreach ($routines as $routine)
 <div class="row">
     <div class="col s12 m8 offset-m2  ">
@@ -29,8 +34,8 @@
                 @else
                 <a href="/profile/{{$routine->user->name}}">
                     <span class="material-icons">
-                        <img src="{{$routine->user->image}}" class="circle" alt="account_circle"
-                            width="37px" height="37px">
+                        <img src="{{$routine->user->image}}" class="circle" alt="account_circle" width="37px"
+                            height="37px">
                     </span>
                     {{$routine->user->name}}
                 </a>
@@ -51,14 +56,14 @@
                     {{$routine->favorites->count()}}
                 </a>
                 @else
-                <form id="fav-submit{{$routine->id}}" action="/favorite" method="POST">
+                {{-- <form id="fav-submit{{$routine->id}}" action="/favorite" method="POST">
                     @csrf
                     <input type="hidden" name="routine_id" value={{$routine->id}}>
-                </form>
+                </form> --}}
 
-                <a type="submit" href="#">
-                    <span class="material-icons"
-                        onclick="event.preventDefault(); document.getElementById('fav-submit{{$routine->id}}').submit();">
+            <a type="submit" href="#" id="favorite{{$routine->id}}">
+                    <span id="isFav{{$routine->id}}" class="material-icons"
+                        >
                         @if ($routine->favorites()->where('user_id', Auth::id())->exists())
                         star
                         @else
@@ -67,13 +72,47 @@
                     </span>
                     {{$routine->favorites->count()}}
                 </a>
+                <button id="submit{{$routine->id}}">aaaaa</button>
+                {{-- Tesing --}}
+                <button id="test{{$routine->id}}">test{{$routine->id}}</button>
+    <script>
+        window.onload = function() {
+            $('#submit{{$routine->id}}').on('click',function(){
+                $.post(
+                    "./favorite",
+                    {_token: "{{ csrf_token() }}",
+                    routine_id:{{$routine->id}}}
+                ).done(function() {
+            if($('#isFav{{$routine->id}}').html()=='star'){
+                $('#isFav{{$routine->id}}').html('star_border')
+            }else{
+                $('#isFav{{$routine->id}}').html('star')
+            }}).fail(function (jqXHR, textStatus, errorThrown) {
+                    // 通信失敗時の処理
+                    alert('ファイルの取得に失敗しました。');
+                    console.log("ajax通信に失敗しました");
+                    console.log("jqXHR          : " + jqXHR.status); // HTTPステータスが取得
+                    console.log("textStatus     : " + textStatus);    // タイムアウト、パースエラー
+                    console.log("errorThrown    : " + errorThrown.message); // 例外情報
+                    console.log("URL            : " + url);
+            });
+        });
+        // Tesing
+        $('#test{{$routine->id}}').on('click',function(){
+            $('#test{{$routine->id}}').html('bbbbb');
+        });
+    };
+
+    var mas = 100*100+100/10;
+console.log(mas);
+    </script>
 
                 @endguest
                 {{-- Favoriteボタン終わり --}}
                 <div class="right">
                     <a class="btn" href="routine/{{$routine->id}}">
-                        ルーティンを見る
-                        <span class="material-icons">forward</span>
+                        見る
+                        <span class="material-icons">double_arrow</span>
                     </a>
                     @if ($routine->user_id===$authId)
                     <a class="btn" href="/routine/{{$routine->id}}/edit">編集</a>

@@ -19,7 +19,7 @@ class FavoriteController extends Controller
         }else{
             $routine->favorites()->attach($user_id);
         }
-        return back();
+        // return back();
         // return [''];
     }
 }

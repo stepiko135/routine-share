@@ -21,14 +21,14 @@
                     {{$routine->user->name}}
                 </p>
                 @endif
-                <br>
-                <p>
+                <h5 class="font center">{{$routine->name}}</h5>
+                {{-- <p>
                     <span class="material-icons">
                         import_contacts
                     </span>
                     ：{{$routine->name}}
-                </p>
-                <p>{{$routine->desc}}</p>
+                </p> --}}
+                <p class="center font">{{$routine->desc}}</p>
 
                 {{-- Favoriteボタン --}}
                 @guest

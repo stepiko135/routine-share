@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" prefix="og: http://ogp.me/ns#">
 
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -10,6 +10,15 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{-- OGP設定 --}}
+    <meta property="og:url" content="http://www.routine-share.work">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Routine Share" />
+    {{-- <meta property="og:title" content="Routine Share"> --}}
+    <meta property="og:description" content="みんなのルーティン、シェアしませんか？">
+    <meta property="og:image" content="https://routine-share.s3-ap-northeast-1.amazonaws.com/others/ogp.png" />
+    <meta name="twitter:card" content="summary_large_image" />
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -163,9 +172,9 @@
                         {{-- <img src="{{Auth::user()->image}}"> --}}
 
                     </div>
-                    <a href="#user"><img class="circle" src="{{Auth::user()->image}}"></a>
-                    <a href="#name"><span class="white-text name">{{ Auth::user()->name }}</span></a>
-                    <a href="#email"><span class="white-text email">{{ Auth::user()->email }}</span></a>
+                    <a href="/profile/{{Auth::user()->name}}"><img class="circle" src="{{Auth::user()->image}}"></a>
+                    <a href="/profile/{{Auth::user()->name}}"><span class="white-text name">{{ Auth::user()->name }}</span></a>
+                    <a href="/profile/{{Auth::user()->name}}"><span class="white-text email">{{ Auth::user()->email }}</span></a>
                 </div>
             </li>
             <li>

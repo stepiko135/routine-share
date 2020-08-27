@@ -4,6 +4,8 @@
 @if (!count($users)>0)
 <h5 class="font center">ユーザーがいません。</h5>
 @else
+<h5 class="font center">
+    ユーザー一覧</h5>
 @foreach ($users as $user)
 {{-- 管理者非表示 --}}
 @if ($loop->first)

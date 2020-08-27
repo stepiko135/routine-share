@@ -20,18 +20,13 @@
             <div class="card-content">
                 <a href="/profile/{{$routine->user->name}}">
                     <span class="material-icons">
-                        <img src="{{$routine->user->image}}" class="circle" alt="account_circle"
-                            width="37px" height="37px">
+                        <img src="{{$routine->user->image}}" class="circle" alt="account_circle" width="37px"
+                            height="37px">
                     </span>
                     {{$routine->user->name}}
                 </a>
-                <p>
-                    <span class="material-icons">
-                        import_contacts
-                    </span>
-                    ：{{$routine->name}}
-                </p>
-                <p>説明：{{$routine->desc}}</p>
+                <p class="center font"><b>{{$routine->name}}</b></p>
+                <p class="center font">{{$routine->desc}}</p>
             </div>
             <div class="card-action">
                 {{-- Favoriteボタン --}}
@@ -56,18 +51,54 @@
                 @endguest
                 {{-- Favoriteボタン終わり --}}
                 <div class="right">
-                    <a class="btn" href="/routine/{{$routine->id}}">ルーティンを見る
-                        <span class="material-icons">forward</span></a>
+                    {{-- 確認ボタン --}}
+                    <a class="btn" href="routine/{{$routine->id}}">
+                        見る
+                        <span class="material-icons">double_arrow</span>
+                    </a>
+                    @if ($routine->user_id=== Auth::id())
+                    {{-- 編集ボタン --}}
+                    <a class="btn" href="/routine/{{$routine->id}}/edit">
+                        <span class="material-icons">create</span>
+                    </a>
+                    {{-- 削除ボタン --}}
+                    <a class="waves-effect waves-light btn modal-trigger btn red lighten-2" href="#delete-modal">
+                        <span class="material-icons">delete_forever</span>
+                    </a>
+
+                    <!-- modal画面 -->
+                    <div id="delete-modal" class="modal">
+                        <div class="font modal-content">
+                            <h5>ルーティンを削除します</h5>
+                            <p>本当に削除してよろしいですか？</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="modal-close btn red lighten-2" href="/routine/{{$routine->id}}"
+                                onclick="event.preventDefault();
+                                document.getElementById('delete').submit();">
+                                削除する
+                            </a>
+                            <a href="#!" class="modal-close btn ">やめておく</a>
+                        </div>
+                    </div>
+
+
+                    <form id="delete" method="POST" action="/routine/{{$routine->id}}" style="display: none;">
+                        @csrf @method('DELETE')
+                    </form>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endforeach
+<div class="center">
+    {{$routines->appends(['sort'=> $sort])->links('vendor.pagination.materialize')}}
+</div>
 <button class="btn" type="button" onclick="history.back()">
     <span class="material-icons">
         keyboard_backspace
     </span>
     もどる</button>
-{{$routines->appends(['sort'=> $sort])->links()}}
 @endsection

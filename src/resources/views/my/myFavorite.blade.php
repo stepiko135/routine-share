@@ -19,17 +19,13 @@
                     </span>
                     {{$favorite->user->name}}
                 </a>
-                <p>
-                    <span class="material-icons">
-                        import_contacts
-                    </span>
-                    ：{{$favorite->name}}
-                </p>
-                <p> {{$favorite->desc}}</p>
+                <p class="font center"><b>{{$favorite->name}}</b></p>
+                <p class="font center">{{$favorite->desc}}</p>
             </div>
             <div class="card-action">
-                <a class="btn right" href="/routine/{{$favorite->id}}">ルーティンを見る
-                    <span class="material-icons">forward</span>
+                <a class="btn right" href="/routine/{{$favorite->id}}">
+                    見る
+                    <span class="material-icons">double_arrow</span>
                 </a>
                 <br>
             </div>

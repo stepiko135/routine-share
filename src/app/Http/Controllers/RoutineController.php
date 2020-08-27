@@ -118,12 +118,13 @@ class RoutineController extends Controller
      */
     public function destroy($id)
     {
-        Routine::find($id)->delete();
+        $routineId = Routine::find($id);
+        $routineId->delete();
         if(Auth::user()->role===1)
         {
-            return redirect('/admin/routine');
+            return redirect('/admin/routine')->with('message','「'.$routineId->name.'」を削除しました');
         }else{
-            return back()->with('message','削除しました');
+            return back()->with('message','削除しました')->with('message','「'.$routineId->name.'」を削除しました');
         }
     }
 }

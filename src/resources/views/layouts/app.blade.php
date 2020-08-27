@@ -15,7 +15,7 @@
     <meta property="og:url" content="http://www.routine-share.work">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Routine Share" />
-    {{-- <meta property="og:title" content="Routine Share"> --}}
+    <meta property="og:title" content="Routine Share">
     <meta property="og:description" content="みんなのルーティン、シェアしませんか？">
     <meta property="og:image" content="https://routine-share.s3-ap-northeast-1.amazonaws.com/others/ogp.png" />
     <meta name="twitter:card" content="summary_large_image" />

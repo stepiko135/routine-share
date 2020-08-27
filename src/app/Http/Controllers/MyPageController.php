@@ -18,7 +18,7 @@ class MyPageController extends Controller
     public function myPage()
     {
         $userId = Auth::user()->id;
-        $routines = Routine::where('user_id',$userId)->get();
+        $routines = Routine::where('user_id',$userId)->orderBy('created_at','desc')->paginate(3);
         return view('my.myPage', compact('routines'));
     }
 

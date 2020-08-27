@@ -29,8 +29,8 @@ class RankingController extends Controller
         }
         // $routines = Routine::orderBy($sort,'desc')->paginate(3);
         // $routines = Routine::paginate(3);
-        
-        
+
+
         // $routines = Favorite::with('routine')->get();
         // $favRanking = Favorite::withCount('user')->orderBy('user_count','desc')->get();
         return view('ranking', compact('routines','sort'));

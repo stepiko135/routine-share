@@ -55,11 +55,11 @@
                         <span class="material-icons">create</span>
                     </a>
                     {{-- 削除ボタン --}}
-                    <a class="waves-effect waves-light btn modal-trigger btn red lighten-2" href="#delete-modal">
+                    <a class="modal-trigger btn red lighten-2" href="#delete-modal{{$routine->id}}">
                         <span class="material-icons">delete_forever</span>
                     </a>
                     <!-- modal画面 -->
-                    <div id="delete-modal" class="modal">
+                    <div id="delete-modal{{$routine->id}}" class="modal">
                         <div class="font modal-content">
                             <h5>ルーティンを削除します</h5>
                             <p>本当に削除してよろしいですか？</p>
@@ -67,14 +67,14 @@
                         <div class="modal-footer">
                             <a class="modal-close btn red lighten-2" href="/routine/{{$routine->id}}"
                                 onclick="event.preventDefault();
-                                document.getElementById('delete').submit();">
+                                document.getElementById('delete{{$routine->id}}').submit();">
                                 削除する
                             </a>
                             <a href="#!" class="modal-close btn ">やめておく</a>
                         </div>
                     </div>
 
-                    <form id="delete" method="POST" action="/routine/{{$routine->id}}">
+                    <form id="delete{{$routine->id}}" method="POST" action="/routine/{{$routine->id}}">
                         @csrf @method('DELETE')
                     </form>
                 </div>
@@ -84,6 +84,9 @@
 </div>
 @endforeach
 @endif
+<div class="center">
+    {{$routines->links('vendor.pagination.materialize')}}
+</div>
 <button class="btn" type="button" onclick="history.back()">
     <span class="material-icons">
         keyboard_backspace

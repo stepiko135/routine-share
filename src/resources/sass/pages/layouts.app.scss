@@ -44,3 +44,8 @@ main{
 .favorite{
     color: #ffab40;
 }
+
+// ページネーション
+.pagination .active{
+    background-color: $main !important;
+}

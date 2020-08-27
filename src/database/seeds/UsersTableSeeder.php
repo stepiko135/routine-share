@@ -47,12 +47,12 @@ class UsersTableSeeder extends Seeder
                 'email' => 'test4@test.com',
                 'password' => Hash::make('password'),
                 'image' => 'https://routine-share.s3-ap-northeast-1.amazonaws.com/profile/surf.jpg',
-                'profile' => 'サーフィンが趣味',
+                'profile' => 'サーフィンが趣味。好きすぎて海の近くに引っ越しました！（笑）',
                 'role' => 5,
             ],
             [
                 'id' => 5,
-                'name' => 'あい',
+                'name' => 'く',
                 'email' => 'test5@test.com',
                 'password' => Hash::make('password'),
                 'image' => 'https://routine-share.s3-ap-northeast-1.amazonaws.com/profile/girl2.jpeg',
@@ -79,7 +79,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'id' => 8,
-                'name' => 'ルビー',
+                'name' => 'あい',
                 'email' => 'test8@test.com',
                 'password' => Hash::make('password'),
                 'image' => 'https://routine-share.s3-ap-northeast-1.amazonaws.com/profile/girl.png',

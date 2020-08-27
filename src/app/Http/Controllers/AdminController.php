@@ -11,14 +11,14 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(6);
 
         return view('admin.index', compact('users'));
     }
 
     public function routine()
     {
-        $routines = Routine::all();
+        $routines = Routine::paginate(4);
 
         return view('admin.routine', compact('routines'));
     }
@@ -26,9 +26,9 @@ class AdminController extends Controller
     // ユーザー削除
     public function delete(Request $request)
     {
-        $userId = $request->userId;
-        User::find($userId)->delete();
+        $userId = User::find($request->userId);
+        $userId->delete();
+        return redirect('/admin')->with('message','「'.$userId->name.'」は削除されました');
 
-        return redirect('/admin');
     }
 }

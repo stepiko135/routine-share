@@ -53,13 +53,9 @@
                     {{$routine->favorites->count()}}
                 </a>
                 @else
-                {{-- <form id="fav-submit{{$routine->id}}" action="/favorite" method="POST">
-                @csrf
-                <input type="hidden" name="routine_id" value={{$routine->id}}>
-                </form> --}}
-
-                <a type="submit" href="#" id="favorite{{$routine->id}}">
-                    <span id="isFav{{$routine->id}}" class="material-icons">
+                <a type="submit" class="favorite" href="#">
+                    <span class="material-icons"
+                        onclick="event.preventDefault(); document.getElementById('fav-submit').submit();">
                         @if ($routine->favorites()->where('user_id', Auth::id())->exists())
                         star
                         @else
@@ -68,43 +64,54 @@
                     </span>
                     {{$routine->favorites->count()}}
                 </a>
-                <button id="submit{{$routine->id}}">aaaaa</button>
+
+                <form id="fav-submit" action="/favorite" method="POST">
+                    @csrf
+                    <input type="hidden" name="routine_id" value="{{$routine->id}}">
+                </form>
+                {{-- <button id="submit{{$routine->id}}">aaaaa</button> --}}
                 {{-- Tesing --}}
-                <button id="test{{$routine->id}}">test{{$routine->id}}</button>
-                <script>
+                {{-- <button id="test{{$routine->id}}">test{{$routine->id}}</button> --}}
+
+
+                {{-- <script>
                     window.onload = function() {
             $('#submit{{$routine->id}}').on('click',function(){
                 $.post(
-                    "./favorite",
-                    {_token: "{{ csrf_token() }}",
-                    routine_id:{{$routine->id}}}
+                "./favorite",
+                {_token: "{{ csrf_token() }}",
+                routine_id:{{$routine->id}}}
                 ).done(function() {
-            if($('#isFav{{$routine->id}}').html()=='star'){
+                if($('#isFav{{$routine->id}}').html()=='star'){
                 $('#isFav{{$routine->id}}').html('star_border')
-            }else{
+                }else{
                 $('#isFav{{$routine->id}}').html('star')
-            }}).fail(function (jqXHR, textStatus, errorThrown) {
-                    // 通信失敗時の処理
-                    alert('ファイルの取得に失敗しました。');
-                    console.log("ajax通信に失敗しました");
-                    console.log("jqXHR          : " + jqXHR.status); // HTTPステータスが取得
-                    console.log("textStatus     : " + textStatus);    // タイムアウト、パースエラー
-                    console.log("errorThrown    : " + errorThrown.message); // 例外情報
-                    console.log("URL            : " + url);
-            });
-        });
-        // Tesing
-        $('#test{{$routine->id}}').on('click',function(){
-            $('#test{{$routine->id}}').html('bbbbb');
-        });
-    };
+                }}).fail(function (jqXHR, textStatus, errorThrown) {
+                // 通信失敗時の処理
+                alert('ファイルの取得に失敗しました。');
+                console.log("ajax通信に失敗しました");
+                console.log("jqXHR : " + jqXHR.status); // HTTPステータスが取得
+                console.log("textStatus : " + textStatus); // タイムアウト、パースエラー
+                console.log("errorThrown : " + errorThrown.message); // 例外情報
+                console.log("URL : " + url);
+                });
+                });
+                // Tesing
+                $('#test{{$routine->id}}').on('click',function(){
+                $('#test{{$routine->id}}').html('bbbbb');
+                });
+                };
 
-    var mas = 100*100+100/10;
-console.log(mas);
-                </script>
+                var mas = 100*100+100/10;
+                console.log(mas);
+                </script> --}}
+
+
+
                 @endguest
                 {{-- Favoriteボタン終わり --}}
                 <div class="right">
+                    {{-- 確認ボタン --}}
                     <a class="btn" href="routine/{{$routine->id}}">
                         見る
                         <span class="material-icons">double_arrow</span>
@@ -115,28 +122,26 @@ console.log(mas);
                         <span class="material-icons">create</span>
                     </a>
                     {{-- 削除ボタン --}}
-                    <a class="waves-effect waves-light btn modal-trigger btn red lighten-2" href="#delete-modal">
+                    <a class="btn modal-trigger btn red lighten-2" href="#delete-modal{{$routine->id}}">
                         <span class="material-icons">delete_forever</span>
                     </a>
 
                     <!-- modal画面 -->
-                    <div id="delete-modal" class="modal">
+                    <div id="delete-modal{{$routine->id}}" class="modal">
                         <div class="font modal-content">
                             <h5>ルーティンを削除します</h5>
                             <p>本当に削除してよろしいですか？</p>
                         </div>
                         <div class="modal-footer">
-                            <a class="modal-close btn red lighten-2" href="/routine/{{$routine->id}}"
-                                onclick="event.preventDefault();
-                                document.getElementById('delete').submit();">
+                            <a class="modal-close btn red lighten-2" href="/routine/{{$routine->id}}" onclick="event.preventDefault();
+                                document.getElementById('delete{{$routine->id}}').submit();">
                                 削除する
                             </a>
                             <a href="#!" class="modal-close btn ">やめておく</a>
                         </div>
                     </div>
-
-
-                    <form id="delete" method="POST" action="/routine/{{$routine->id}}" style="display: none;">
+                    <form id="delete{{$routine->id}}" method="POST" action="/routine/{{$routine->id}}"
+                        style="display: none;">
                         @csrf @method('DELETE')
                     </form>
                     @endif
@@ -146,10 +151,13 @@ console.log(mas);
     </div>
 </div>
 @endforeach
+<div class="center">
+    {{$routines->links('vendor.pagination.materialize')}}
+</div>
 <button class="btn" type="button" onclick="history.back()">
     <span class="material-icons">
         keyboard_backspace
     </span>
     もどる</button>
-{{$routines->links()}}
+
 @endsection

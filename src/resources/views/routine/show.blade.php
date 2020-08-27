@@ -8,27 +8,21 @@
             <div class="card-content">
 
                 @if (!$routine->user)
-                <p>
+                <a href="/profile/{{$routine->user->name}}">
                     <span class="material-icons">person_outline</span>
                     ：削除されたユーザー
-                </p>
+                </a>
                 @else
-                <p>
+                <a href="/profile/{{$routine->user->name}}">
                     <span class="material-icons">
-                        <img src="{{$routine->user->image}}" class="circle" alt="account_circle"
-                            width="37px" height="37px">
+                        <img src="{{$routine->user->image}}" class="circle" alt="account_circle" width="37px"
+                            height="37px">
                     </span>
                     {{$routine->user->name}}
-                </p>
+                </a>
                 @endif
                 <h5 class="font center">{{$routine->name}}</h5>
-                {{-- <p>
-                    <span class="material-icons">
-                        import_contacts
-                    </span>
-                    ：{{$routine->name}}
-                </p> --}}
-                <p class="center font">{{$routine->desc}}</p>
+                <p class="font center">{{$routine->desc}}</p>
 
                 {{-- Favoriteボタン --}}
                 @guest
@@ -67,9 +61,32 @@
         </div>
 
         @if (Auth::id() === $routine->user_id)
-        <a class="btn" href="/routine/{{$routine->id}}/edit">編集</a>
+        {{-- 削除ボタン --}}
+        <a class=" right waves-effect waves-light btn modal-trigger btn red lighten-2" href="#delete-modal">
+            <span class="material-icons">delete_forever</span>
+        </a>
+        {{-- 編集ボタン --}}
+        <a class="btn right" href="/routine/{{$routine->id}}/edit">
+            <span class="material-icons">create</span>
+        </a>
+        <!-- modal画面 -->
+        <div id="delete-modal" class="modal">
+            <div class="font modal-content">
+                <h5>ルーティンを削除します</h5>
+                <p>本当に削除してよろしいですか？</p>
+            </div>
+            <div class="modal-footer">
+                <a class="modal-close btn red lighten-2" href="/routine/{{$routine->id}}" onclick="event.preventDefault();
+                                document.getElementById('delete').submit();">
+                    削除する
+                </a>
+                <a href="#!" class="modal-close btn ">やめておく</a>
+            </div>
+        </div>
+        <form action="/routine/{{$routine->id}}" id="delete" method="POST">
+            @csrf @method('DELETE')
+        </form>
         @endif
-
 
         {{-- アイテムの表示 --}}
         <section class="timeline">
@@ -95,7 +112,7 @@
         </section>
     </div>
     <div class="col s12 m3">
-    <br><br>
+        <br><br>
         {{-- コメント欄表示 --}}
         コメント欄
     </div>

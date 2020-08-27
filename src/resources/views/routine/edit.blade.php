@@ -3,7 +3,7 @@
 @section('content')
 <br>
 <h5 class="font center">
-    <span class="material-icons">
+    1,<span class="material-icons">
         create
     </span>
     ルーティンの編集
@@ -20,11 +20,11 @@
             <div class="row">
                 <br>
                 <div class="input-field col s12 m8 offset-m2">
-                    <label for="name">ルーティン名</label>
+                    <label class="active" for="name">ルーティン名</label>
                     @error('name')
                     <p class="red-text">{{$message}}</p>
                     @enderror
-                    <input type="text" name="name" id="name" placeholder="(例) 平日のルーティン" value="{{$routine->name}}"
+                    <input class="active" type="text" name="name" id="name" placeholder="(例) 平日のルーティン" value="{{$routine->name}}"
                         autofocus>
                 </div>
             </div>

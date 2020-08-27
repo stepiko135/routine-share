@@ -258,7 +258,7 @@
             </div>
             <div class="footer-copyright">
                 <div class="container center">
-                    <small>© 2020 Copyright HIRO</small>
+                    <a class="white-text" href="https://github.com/stepiko135" target="_blank"><small>© 2020 Copyright HIRO</small></a>
                 </div>
             </div>
         </footer>

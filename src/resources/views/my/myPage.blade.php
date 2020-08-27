@@ -5,7 +5,8 @@
 <a href="/routine/create" class="right btn-floating btn-large waves-effect waves-light tooltipped"
     data-position="bottom" data-tooltip="ルーティンを作る"><i class="material-icons">add</i></a><br>
 @if (!count($routines)>0)
-<br><br><h5 class="font center">あたらしいルーティンを作ってみましょう！</h5><br><br>
+<br><br>
+<h5 class="font center">あたらしいルーティンを作ってみましょう！</h5><br><br>
 @else
 <br><br>
 @foreach ($routines as $routine)
@@ -18,18 +19,13 @@
             <div class="card-content">
                 <p>
                     <span class="material-icons">
-                        <img src="{{$routine->user->image}}" class="circle" alt="account_circle"
-                            width="37px" height="37px">
+                        <img src="{{$routine->user->image}}" class="circle" alt="account_circle" width="37px"
+                            height="37px">
                     </span>
                     {{$routine->user->name}}
                 </p>
-                <p>
-                    <span class="material-icons">
-                        import_contacts
-                    </span>
-                    ：{{$routine->name}}
-                </p>
-                <p>　　{{$routine->desc}}</p>
+                <p class="font center"><b>{{$routine->name}}</b></p>
+                <p class="font center">{{$routine->desc}}</p>
             </div>
             <div class="card-action">
                 {{-- Favoriteボタン --}}
@@ -51,14 +47,33 @@
                 {{-- Favoriteボタン終わり --}}
                 <div class="right">
                     <a class="btn" href="routine/{{$routine->id}}">
-                                                見る
+                        見る
                         <span class="material-icons">double_arrow</span>
                     </a>
-                    <a class="btn" href="/routine/{{$routine->id}}/edit">編集</a>
-                    <a class="btn red lighten-2" href="/routine/{{$routine->id}}" onclick="event.preventDefault();
-                    document.getElementById('delete').submit();">
-                        削除
+                    {{-- 編集ボタン --}}
+                    <a class="btn" href="/routine/{{$routine->id}}/edit">
+                        <span class="material-icons">create</span>
                     </a>
+                    {{-- 削除ボタン --}}
+                    <a class="waves-effect waves-light btn modal-trigger btn red lighten-2" href="#delete-modal">
+                        <span class="material-icons">delete_forever</span>
+                    </a>
+                    <!-- modal画面 -->
+                    <div id="delete-modal" class="modal">
+                        <div class="font modal-content">
+                            <h5>ルーティンを削除します</h5>
+                            <p>本当に削除してよろしいですか？</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="modal-close btn red lighten-2" href="/routine/{{$routine->id}}"
+                                onclick="event.preventDefault();
+                                document.getElementById('delete').submit();">
+                                削除する
+                            </a>
+                            <a href="#!" class="modal-close btn ">やめておく</a>
+                        </div>
+                    </div>
+
                     <form id="delete" method="POST" action="/routine/{{$routine->id}}">
                         @csrf @method('DELETE')
                     </form>

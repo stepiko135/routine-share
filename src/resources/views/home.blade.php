@@ -40,13 +40,10 @@
                     {{$routine->user->name}}
                 </a>
                 @endif
-                <p>
-                    <span class="material-icons">
-                        import_contacts
-                    </span>
-                    ：{{$routine->name}}
+                <p class="center font">
+                    <b>{{$routine->name}}</b>
                 </p>
-                <p>{{$routine->desc}}</p>
+                <p class="center font">{{$routine->desc}}</p>
             </div>
             <div class="card-action">
                 {{-- Favoriteボタン --}}
@@ -57,13 +54,12 @@
                 </a>
                 @else
                 {{-- <form id="fav-submit{{$routine->id}}" action="/favorite" method="POST">
-                    @csrf
-                    <input type="hidden" name="routine_id" value={{$routine->id}}>
+                @csrf
+                <input type="hidden" name="routine_id" value={{$routine->id}}>
                 </form> --}}
 
-            <a type="submit" href="#" id="favorite{{$routine->id}}">
-                    <span id="isFav{{$routine->id}}" class="material-icons"
-                        >
+                <a type="submit" href="#" id="favorite{{$routine->id}}">
+                    <span id="isFav{{$routine->id}}" class="material-icons">
                         @if ($routine->favorites()->where('user_id', Auth::id())->exists())
                         star
                         @else
@@ -75,8 +71,8 @@
                 <button id="submit{{$routine->id}}">aaaaa</button>
                 {{-- Tesing --}}
                 <button id="test{{$routine->id}}">test{{$routine->id}}</button>
-    <script>
-        window.onload = function() {
+                <script>
+                    window.onload = function() {
             $('#submit{{$routine->id}}').on('click',function(){
                 $.post(
                     "./favorite",
@@ -105,7 +101,7 @@
 
     var mas = 100*100+100/10;
 console.log(mas);
-    </script>
+                </script>
                 @endguest
                 {{-- Favoriteボタン終わり --}}
                 <div class="right">
@@ -114,11 +110,32 @@ console.log(mas);
                         <span class="material-icons">double_arrow</span>
                     </a>
                     @if ($routine->user_id===$authId)
-                    <a class="btn" href="/routine/{{$routine->id}}/edit">編集</a>
-                    <a class="btn red lighten-2" href="/routine/{{$routine->id}}" onclick="event.preventDefault();
-                            document.getElementById('delete').submit();">
-                        削除
+                    {{-- 編集ボタン --}}
+                    <a class="btn" href="/routine/{{$routine->id}}/edit">
+                        <span class="material-icons">create</span>
                     </a>
+                    {{-- 削除ボタン --}}
+                    <a class="waves-effect waves-light btn modal-trigger btn red lighten-2" href="#delete-modal">
+                        <span class="material-icons">delete_forever</span>
+                    </a>
+
+                    <!-- modal画面 -->
+                    <div id="delete-modal" class="modal">
+                        <div class="font modal-content">
+                            <h5>ルーティンを削除します</h5>
+                            <p>本当に削除してよろしいですか？</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="modal-close btn red lighten-2" href="/routine/{{$routine->id}}"
+                                onclick="event.preventDefault();
+                                document.getElementById('delete').submit();">
+                                削除する
+                            </a>
+                            <a href="#!" class="modal-close btn ">やめておく</a>
+                        </div>
+                    </div>
+
+
                     <form id="delete" method="POST" action="/routine/{{$routine->id}}" style="display: none;">
                         @csrf @method('DELETE')
                     </form>

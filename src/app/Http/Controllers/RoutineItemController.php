@@ -30,7 +30,7 @@ class RoutineItemController extends Controller
         unset($forms['_token']);
         $routineItem->fill($forms)->save();
         $id = $request->routine_id;
-        return back();
+        return back()->with('message','保存されました');
     }
 
     /**
@@ -69,7 +69,7 @@ class RoutineItemController extends Controller
         $routineItem->fill($forms)->save();
         $routineId = $routineItem->routine_id;
         // return redirect()->route('home');
-        return redirect()->action('RoutineController@edit', ['routine' => $routineId]);
+        return redirect()->action('RoutineItemController@edit', ['routineId' => $routineId])->with('message','更新されました');
     }
 
     /**
@@ -84,6 +84,6 @@ class RoutineItemController extends Controller
         $routineItem->delete();
         // return redirect('/routine/'.$id->routine_id.'/edit');
         $routineId = $routineItem->routine_id;
-        return redirect()->action('RoutineController@edit', ['routine' => $routineId]);
+        return redirect()->action('RoutineItemController@edit', ['routineId' => $routineId])->with('message','削除しました');
     }
 }

@@ -24,8 +24,18 @@
                     height="37px">
             </span>
             {{$user->name}}</a>
-            @endif
-            <p>Profile：{{$user->profile}}</p>
+        @endif
+        @if ($user->profile)
+        <p class="font">{{$user->profile}}</p>
+        @else
+        <p class="font">コメントはありません。</p>
+        @endif
+        <p class="font">
+            <span class="material-icons">
+            article
+            </span>
+            ：{{count($user->routines)}}
+        </p>
     </div>
 </div>
 @endforeach

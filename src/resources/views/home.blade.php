@@ -106,7 +106,6 @@
     var mas = 100*100+100/10;
 console.log(mas);
     </script>
-
                 @endguest
                 {{-- Favoriteボタン終わり --}}
                 <div class="right">

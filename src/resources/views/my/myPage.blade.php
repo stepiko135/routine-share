@@ -50,7 +50,10 @@
                 </a>
                 {{-- Favoriteボタン終わり --}}
                 <div class="right">
-                    <a class="btn" href="routine/{{$routine->id}}">アイテムの確認</a>
+                    <a class="btn" href="routine/{{$routine->id}}">
+                                                見る
+                        <span class="material-icons">double_arrow</span>
+                    </a>
                     <a class="btn" href="/routine/{{$routine->id}}/edit">編集</a>
                     <a class="btn red lighten-2" href="/routine/{{$routine->id}}" onclick="event.preventDefault();
                     document.getElementById('delete').submit();">

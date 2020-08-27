@@ -104,7 +104,7 @@ class UserController extends Controller
         }
         $user->save();
 
-        return redirect('/profile/' . $userName);
+        return redirect('/profile/' . $userName)->with('message','プロフィールを更新しました！');
     }
 
     /**

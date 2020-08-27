@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -30,7 +31,7 @@ class LoginController extends Controller
     // protected $redirectTo = RouteServiceProvider::HOME;
     protected function redirectTo()
     {
-        Session::flash('status', 'ログインしました！');
+        Session::flash('message', Auth::user()->name.'さん、ようこそ！');
         return RouteServiceProvider::HOME;
     }
 

@@ -4,7 +4,9 @@
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-176138945-1"></script>
-    <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-176138945-1');</script>
+    <script>
+        window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-176138945-1');
+    </script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,7 +33,7 @@
     <div id="app" class="main-bg">
         <nav class="nav-wrapper main-color">
             <a class="brand-logo" href="{{route('home')}}">
-                <img src="{{asset('/img/logo.png')}}?20200826" alt="Routine Share" width="220px" />
+                <img src="{{asset('/img/logo.png')}}" alt="Routine Share" width="220px">
             </a>
             <!-- {{-- 導入したいもの　scrollspy Toasts  character-counter --}} -->
             <!-- Right Side Of Navbar -->
@@ -261,6 +263,15 @@
             </div>
         </footer>
     </div>
+    @if(Session::has('message'))
+    <script>
+        // Materialize 初期化
+document.addEventListener('DOMContentLoaded', function() {
+    M.AutoInit();
+    M.toast({html: '{{ session('message') }}'})
+    });
+    </script>
+    @endif
 </body>
 
 </html>

@@ -19,7 +19,10 @@ class FavoriteController extends Controller
         }else{
             $routine->favorites()->attach($user_id);
         }
-        return back();
-        // return [''];
+        $count = $routine->favorites->count();
+        // return back();
+        // return response()->json(["count"=>$count]);
+        $return_array = compact('count');
+        return json_encode($return_array);
     }
 }

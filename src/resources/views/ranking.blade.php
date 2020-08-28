@@ -33,21 +33,49 @@
                 @guest
                 <a title="気に入りましたか？登録してみよう" href="/login"><span class="material-icons">star_border</span></a>
                 @else
-                <form id="fav-submit{{$routine->id}}" action="/favorite" method="POST">
-                    @csrf
-                    <input type="hidden" name="routine_id" value={{$routine->id}}>
-                </form>
-                <a type="submit" href="#">
-                    <span class="material-icons"
-                        onclick="event.preventDefault(); document.getElementById('fav-submit{{$routine->id}}').submit();">
-                        @if ($routine->favorites()->where('user_id', Auth::id())->exists())
-                        star
-                        @else
-                        star_border
-                        @endif
-                    </span>
+                {{-- お気に入りボタン --}}
+                @if ($routine->favorites()->where('user_id', Auth::id())->exists())
+                <a type="submit" class="favorite" href="#" onclick="event.preventDefault();">
+                    <span class="material-icons 1">star</span>
+                    <span class="material-icons 2 off">star_border</span>
+                    <input type="hidden" name="routine_id" value="{{$routine->id}}">
                     {{$routine->favorites->count()}}
                 </a>
+                @else
+                <a type="submit" class="favorite" href="#" onclick="event.preventDefault();">
+                    <span class="material-icons 2 off">star</span>
+                    <span class="material-icons 1">star_border</span>
+                    <input type="hidden" name="routine_id" value="{{$routine->id}}">
+                    {{$routine->favorites->count()}}
+                </a>
+                @endif
+                <script>
+                    window.onload = (function(){
+        $('.favorite').click(
+            function(){
+                $(this).find('.1').toggleClass('off');
+                $(this).find('.2').toggleClass('off');
+                $.ajax({
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    type:'POST',
+                    url:'/favorite',
+                    timeout: 10000,
+                    data:{
+                        'routine_id': $(this).find('input[name=routine_id]').val(),
+                    },
+                }).done(function(count){
+                    $(this).val(count);
+                }).fail(function(jqXHR,textStatus,errorThrown){
+                    alert('ファイルの取得に失敗しました。');
+                    console.log("ajax通信に失敗しました")
+                    console.log(jqXHR.status);
+                    console.log(textStatus);
+                    console.log(errorThrown.message);
+                });
+            }
+        );
+    });
+                </script>
                 @endguest
                 {{-- Favoriteボタン終わり --}}
                 <div class="right">
@@ -73,8 +101,7 @@
                             <p>本当に削除してよろしいですか？</p>
                         </div>
                         <div class="modal-footer">
-                            <a class="modal-close btn red lighten-2" href="/routine/{{$routine->id}}"
-                                onclick="event.preventDefault();
+                            <a class="modal-close btn red lighten-2" href="/routine/{{$routine->id}}" onclick="event.preventDefault();
                                 document.getElementById('delete').submit();">
                                 削除する
                             </a>

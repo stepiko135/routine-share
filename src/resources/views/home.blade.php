@@ -46,68 +46,55 @@
                 <p class="center font">{{$routine->desc}}</p>
             </div>
             <div class="card-action">
-                {{-- Favoriteボタン --}}
                 @guest
                 <a title="気に入りましたか？登録してみよう" href="/login">
                     <span class="material-icons">star_border</span>
                     {{$routine->favorites->count()}}
                 </a>
                 @else
-                <a type="submit" class="favorite" href="#">
-                    <span class="material-icons"
-                        onclick="event.preventDefault(); document.getElementById('fav-submit').submit();">
-                        @if ($routine->favorites()->where('user_id', Auth::id())->exists())
-                        star
-                        @else
-                        star_border
-                        @endif
-                    </span>
+                {{-- お気に入りボタン --}}
+                @if ($routine->favorites()->where('user_id', Auth::id())->exists())
+                <a type="submit" class="favorite" href="#" onclick="event.preventDefault();">
+                    <span class="material-icons 1">star</span>
+                    <span class="material-icons 2 off">star_border</span>
+                    <input type="hidden" name="routine_id" value="{{$routine->id}}">
                     {{$routine->favorites->count()}}
                 </a>
-
-                <form id="fav-submit" action="/favorite" method="POST">
-                    @csrf
+                @else
+                <a type="submit" class="favorite" href="#" onclick="event.preventDefault();">
+                    <span class="material-icons 2 off">star</span>
+                    <span class="material-icons 1">star_border</span>
                     <input type="hidden" name="routine_id" value="{{$routine->id}}">
-                </form>
-                {{-- <button id="submit{{$routine->id}}">aaaaa</button> --}}
-                {{-- Tesing --}}
-                {{-- <button id="test{{$routine->id}}">test{{$routine->id}}</button> --}}
-
-
-                {{-- <script>
-                    window.onload = function() {
-            $('#submit{{$routine->id}}').on('click',function(){
-                $.post(
-                "./favorite",
-                {_token: "{{ csrf_token() }}",
-                routine_id:{{$routine->id}}}
-                ).done(function() {
-                if($('#isFav{{$routine->id}}').html()=='star'){
-                $('#isFav{{$routine->id}}').html('star_border')
-                }else{
-                $('#isFav{{$routine->id}}').html('star')
-                }}).fail(function (jqXHR, textStatus, errorThrown) {
-                // 通信失敗時の処理
-                alert('ファイルの取得に失敗しました。');
-                console.log("ajax通信に失敗しました");
-                console.log("jqXHR : " + jqXHR.status); // HTTPステータスが取得
-                console.log("textStatus : " + textStatus); // タイムアウト、パースエラー
-                console.log("errorThrown : " + errorThrown.message); // 例外情報
-                console.log("URL : " + url);
+                    {{$routine->favorites->count()}}
+                </a>
+                @endif
+                <script>
+                    window.onload = (function(){
+        $('.favorite').click(
+            function(){
+                $(this).find('.1').toggleClass('off');
+                $(this).find('.2').toggleClass('off');
+                $.ajax({
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    type:'POST',
+                    url:'/favorite',
+                    timeout: 10000,
+                    data:{
+                        'routine_id': $(this).find('input[name=routine_id]').val(),
+                    },
+                }).done(function(count){
+                    $(this).val(count);
+                }).fail(function(jqXHR,textStatus,errorThrown){
+                    alert('ファイルの取得に失敗しました。');
+                    console.log("ajax通信に失敗しました")
+                    console.log(jqXHR.status);
+                    console.log(textStatus);
+                    console.log(errorThrown.message);
                 });
-                });
-                // Tesing
-                $('#test{{$routine->id}}').on('click',function(){
-                $('#test{{$routine->id}}').html('bbbbb');
-                });
-                };
-
-                var mas = 100*100+100/10;
-                console.log(mas);
-                </script> --}}
-
-
-
+            }
+        );
+    });
+                </script>
                 @endguest
                 {{-- Favoriteボタン終わり --}}
                 <div class="right">
@@ -129,8 +116,8 @@
                     <!-- modal画面 -->
                     <div id="delete-modal{{$routine->id}}" class="modal">
                         <div class="font modal-content">
-                            <h5>ルーティンを削除します</h5>
-                            <p>本当に削除してよろしいですか？</p>
+                            <h5 class="center">ルーティンを削除します</h5>
+                            <p class="center">本当に削除してよろしいですか？</p>
                         </div>
                         <div class="modal-footer">
                             <a class="modal-close btn red lighten-2" href="/routine/{{$routine->id}}" onclick="event.preventDefault();

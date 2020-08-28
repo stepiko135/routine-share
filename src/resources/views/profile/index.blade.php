@@ -21,8 +21,7 @@
         @else
         <a href="/profile/{{$user->name}}">
             <span class="material-icons">
-                <img src="{{$user->image}}" class="circle" alt="account_circle" width="37px"
-                    height="37px">
+                <img src="{{$user->image}}" class="circle" alt="account_circle" width="37px" height="37px">
             </span>
             {{$user->name}}</a>
         @endif
@@ -33,7 +32,7 @@
         @endif
         <p class="font">
             <span class="material-icons">
-            article
+                article
             </span>
             ：{{count($user->routines)}}
         </p>

@@ -24,8 +24,8 @@ class RoutineItemRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:100',
-            'desc' => 'max:200',
+            'title' => 'required|max:50',
+            'desc' => 'max:150',
         ];
     }
 
@@ -33,8 +33,8 @@ class RoutineItemRequest extends FormRequest
     {
         return [
             'title.required' => 'アイテム名は必ず入力してください。',
-            'title.max' => '100文字以内で入力してください。',
-            'desc.max' => '200文字以内で入力してください。',
+            'title.max' => '50文字以内で入力してください。',
+            'desc.max' => '150文字以内で入力してください。',
         ];
     }
 }

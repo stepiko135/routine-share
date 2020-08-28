@@ -25,7 +25,7 @@
                     <p class="red-text">{{$message}}</p>
                     @enderror
                     <input class="active" type="text" name="name" id="name" placeholder="(例) 平日のルーティン" value="{{$routine->name}}"
-                        autofocus>
+                        autofocus data-length="50">
                 </div>
             </div>
 
@@ -36,7 +36,7 @@
                     <p class="red-text">{{$message}}</p>
                     @enderror
                     <textarea name="desc" id="desc" wrap="hard" class="materialize-textarea"
-                        placeholder="(例) 忙しい朝でもリラックスできる私のルーティンを紹介します！！">{{$routine->desc}}</textarea>
+                        placeholder="(例) 忙しい朝でもリラックスできる私のルーティンを紹介します！！" data-length="150">{{$routine->desc}}</textarea>
                     <div class="center">
                         <button type="reset" class="btn red lighten-2">クリア</button>
                         <button type="submit" class="btn">ルーティンアイテムの更新へ</button>

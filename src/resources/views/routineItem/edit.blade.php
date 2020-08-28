@@ -40,7 +40,7 @@
             <div class="row">
                 <div class="input-field col s12 m8 offset-m2">
                     <label for="title">アイテム名</label>
-                    <input type="text" id="title" name="title" placeholder="(例) コーヒーを飲む" autofocus
+                    <input type="text" id="title" name="title" placeholder="(例) コーヒーを飲む" autofocus data-length="50"
                         value="{{old('title')}}">
                 </div>
             </div>
@@ -48,7 +48,7 @@
                 <div class="input-field col s12 m8 offset-m2">
                     <label for="desc">説明</label>
                     <textarea name="desc" id="desc" class="materialize-textarea" wrap="hard"
-                        placeholder="(例) 濃いめのコーヒーがおすすめです！">{{old('desc')}}</textarea>
+                        placeholder="(例) 濃いめのコーヒーがおすすめです！" data-length="150">{{old('desc')}}</textarea>
                 </div>
             </div>
 

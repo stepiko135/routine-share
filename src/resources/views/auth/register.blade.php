@@ -4,7 +4,10 @@
 <br><br>
 <div class="container">
     <div class="card">
-        <h4 class="font center">登録</h4>
+        <br>
+        <h4 class="font center">
+            <span class="material-icons large">assignment_turned_in</span>
+            登録</h4>
         <div class="card-body">
             <form method="POST" action="{{ route('register') }}">
                 @csrf
@@ -58,6 +61,7 @@
                 </div>
                 <div class="center">
                     <button type="submit" class="btn btn-primary">
+                        <span class="material-icons">done_outline</span>
                         登録する
                     </button>
                 </div>

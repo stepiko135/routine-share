@@ -25,7 +25,7 @@ class ProfileRequest extends FormRequest
     {
         return [
             'image' => 'image',
-            'profile' => 'max:200',
+            'profile' => 'max:100',
         ];
     }
 

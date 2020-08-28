@@ -61,8 +61,8 @@
                     <!-- modal画面 -->
                     <div id="delete-modal{{$routine->id}}" class="modal">
                         <div class="font modal-content">
-                            <h5>ルーティンを削除します</h5>
-                            <p>本当に削除してよろしいですか？</p>
+                            <h5 class="center">ルーティンを削除します</h5>
+                            <p class="center">本当に削除してよろしいですか？</p>
                         </div>
                         <div class="modal-footer">
                             <a class="modal-close btn red lighten-2" href="/routine/{{$routine->id}}"

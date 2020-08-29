@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Routine;
 use App\RoutineItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,31 +18,6 @@ class RoutineItemController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function index()
-    // {
-    //     $userId = Auth::id();
-    //     $routineItems = RoutineItem::where('user_id', $userId)->get();
-    //     return view('routineItem.index', compact('routineItems'));
-    // }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function create(Request $request)
-    // {
-    //     //リンク元からroutine_idを取得
-    //     $routine_id = $request->id;
-
-    //     return view('routineItem.create', compact('routine_id'));
-    // }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -54,16 +30,8 @@ class RoutineItemController extends Controller
         unset($forms['_token']);
         $routineItem->fill($forms)->save();
         $id = $request->routine_id;
-        return back();
+        return back()->with('message','保存されました');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
 
     /**
      * Show the form for editing the specified resource.
@@ -71,10 +39,20 @@ class RoutineItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function edit($id)
-    // {
-        //
-    // }
+    public function edit($routineId)
+    {
+        // 自分以外の投稿を編集しようとしたら/homeへリダイレクト
+        $longinUserId = Auth::id();
+        $routineOwnerId = Routine::find($routineId)->user_id;
+
+        if ($longinUserId === $routineOwnerId) {
+            //アイテムがあれば取得して時間順に表示させる
+            $items = RoutineItem::where('routine_id', $routineId)->orderBy('time', 'asc')->get();
+            return view('routineItem.edit', compact('items','routineId'));
+        } else {
+            return redirect(route('home'));
+        }
+    }
 
     /**
      * Update the specified resource in storage.
@@ -91,7 +69,7 @@ class RoutineItemController extends Controller
         $routineItem->fill($forms)->save();
         $routineId = $routineItem->routine_id;
         // return redirect()->route('home');
-        return redirect()->action('RoutineController@edit', ['routine' => $routineId]);
+        return redirect()->action('RoutineItemController@edit', ['routineId' => $routineId])->with('message','更新されました');
     }
 
     /**
@@ -106,6 +84,6 @@ class RoutineItemController extends Controller
         $routineItem->delete();
         // return redirect('/routine/'.$id->routine_id.'/edit');
         $routineId = $routineItem->routine_id;
-        return redirect()->action('RoutineController@edit', ['routine' => $routineId]);
+        return redirect()->action('RoutineItemController@edit', ['routineId' => $routineId])->with('message','削除しました');
     }
 }

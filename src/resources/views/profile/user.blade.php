@@ -16,7 +16,9 @@
         </h5>
         <p>{{$user->profile}}</p>
         @if (Auth::id()===$user->id)
-        <a class="btn right" href="/profile/{{$user->name}}/edit">編集</a>
+        <a class="btn right" href="/profile/{{$user->name}}/edit">
+            <span class="material-icons">create</span>
+        </a>
         @endif
     </div>
 </div>
@@ -29,13 +31,9 @@
 @foreach ($routines as $routine)
 <div class="row">
     <div class="col s10 offset-s1 m6 offset-m3 card">
-        <p>
-            <span class="material-icons">
-                import_contacts
-            </span>
-            ：{{$routine->name}}
-        </p>
-        <p>{{$routine->desc}}</p>
+        <br>
+        <p class="font center"><b>{{$routine->name}}</b></p>
+        <p class="font center">{{$routine->desc}}</p>
         <span class="material-icons favorite">
             star
         </span>{{$routine->favorites->count()}}

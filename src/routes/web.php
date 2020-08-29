@@ -26,11 +26,17 @@ Route::get('/','HomeController@index')->name('home');
 Route::get('/ranking','RankingController@index')->name('ranking');
 
 Route::get('/mypage','MyPageController@myPage')->name('mypage');
-Route::get('/my-favorite','MypageController@myFavorite')->name('my-favorite');
+Route::get('/my-favorite','MyPageController@myFavorite');
 
 Route::resource('/routine','RoutineController',['except'=>'index']);
 
-Route::resource('/routine-item','RoutineItemController',['except'=>'index','show','create','edit']);
+Route::post('/routine-item','RoutineItemController@store');
+Route::get('/routine-item/{routineId}/edit','RoutineItemController@edit');
+Route::put('/routine-item/{routineItem}','RoutineItemController@update');
+Route::delete('/routine-item/{routineItem}','RoutineItemController@destroy');
+
+
+
 
 Route::post('/favorite','FavoriteController@favorite');
 

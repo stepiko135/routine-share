@@ -6,6 +6,7 @@ html,body{
 
 main{
     min-height: 80vh;
+    overflow-x: hidden
 }
 
 .main-bg{
@@ -42,4 +43,12 @@ main{
 // お気に入りボタン
 .favorite{
     color: #ffab40;
+}
+.off{
+    display: none;
+}
+
+// ページネーション
+.pagination .active{
+    background-color: $main !important;
 }

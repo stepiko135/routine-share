@@ -49,7 +49,7 @@ class RoutineController extends Controller
         // そのまま作成したルーティンのアイテム作成ページへ遷移
         // return redirect('mypage/');
         $id = $routine->id;
-        return redirect()->action('RoutineController@edit',['routine' => $id]);
+        return redirect()->action('RoutineItemController@edit',['routineId' => $id])->with('message','次はアイテムを作成しましょう');
     }
 
     /**
@@ -62,9 +62,14 @@ class RoutineController extends Controller
     {
         // ルーティンアイテムを取得して時間順に並べる
         $routine = Routine::find($id);
-        $routineItems = RoutineItem::where('routine_id',$id)->orderBy('time','asc')->get();
+        if($routine)
+        {
+            $routineItems = RoutineItem::where('routine_id',$id)->orderBy('time','asc')->get();
 
-        return view('routine.show',compact('routine','routineItems'));
+            return view('routine.show',compact('routine','routineItems'));
+        }else{
+            return redirect()->route('home');
+        }
     }
 
     /**
@@ -75,9 +80,6 @@ class RoutineController extends Controller
      */
     public function edit($id)
     {
-        //アイテムがあれば取得して時間順に表示させる
-        $items = RoutineItem::where('routine_id',$id)->orderBy('time','asc')->get();
-
         // 自分以外の投稿を編集しようとしたら/homeへリダイレクト
         $longinUserId = Auth::id();
         $routineOwnerId = Routine::find($id)->user_id;
@@ -85,9 +87,9 @@ class RoutineController extends Controller
         if($longinUserId === $routineOwnerId)
         {
             $routine = Routine::find($id);
-            return view('routine.edit', compact('routine','items'));
+            return view('routine.edit', compact('routine'));
         }else{
-            return redirect('/home');
+            return redirect(route('home'))->with('message','権限がありません');
         }
     }
 
@@ -105,7 +107,7 @@ class RoutineController extends Controller
         $forms = $request->all();
         unset($forms['_token']);
         $routine->fill($forms)->save();
-        return redirect('/mypage');
+        return redirect()->action('RoutineItemController@edit', ['routineId' => $id])->with('message','更新しました');
     }
 
     /**
@@ -116,12 +118,13 @@ class RoutineController extends Controller
      */
     public function destroy($id)
     {
-        Routine::find($id)->delete();
+        $routineId = Routine::find($id);
+        $routineId->delete();
         if(Auth::user()->role===1)
         {
-            return redirect('/admin/routine');
+            return redirect('/admin/routine')->with('message','「'.$routineId->name.'」を削除しました');
         }else{
-            return back();
+            return back()->with('message','削除しました')->with('message','「'.$routineId->name.'」を削除しました');
         }
     }
 }

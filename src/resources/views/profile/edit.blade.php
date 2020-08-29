@@ -30,7 +30,7 @@
                 <span class="material-icons">person_outline</span>
                 {{$user->name}}
             </h5>
-            <textarea name="profile" id="profile" class="materialize-textarea" placeholder="よろしくお願いします！">{{$user->profile}}</textarea>
+            <textarea name="profile" id="profile" class="materialize-textarea" placeholder="よろしくお願いします！" data-length="100">{{$user->profile}}</textarea>
             <input type="submit" class="btn" value="更新">
         </form>
     </div>

@@ -10,28 +10,22 @@
     <div class="col s12 m8 offset-m2">
         <div class="card">
             <div class="card-image">
-                {{-- <img src="images/sample-1.jpg">
-                <span class="card-title">Card Title</span> --}}
             </div>
             <div class="card-content">
                 <a href="/profile/{{$favorite->user->name}}">
                     <span class="material-icons">
-                        <img src="{{$favorite->user->image}}" class="circle" alt="account_circle"
-                            width="37px" height="37px">
+                        <img src="{{$favorite->user->image}}" class="circle" alt="account_circle" width="37px"
+                            height="37px">
                     </span>
                     {{$favorite->user->name}}
                 </a>
-                <p>
-                    <span class="material-icons">
-                        import_contacts
-                    </span>
-                    ：{{$favorite->name}}
-                </p>
-                <p>  {{$favorite->desc}}</p>
+                <p class="font center"><b>{{$favorite->name}}</b></p>
+                <p class="font center">{{$favorite->desc}}</p>
             </div>
             <div class="card-action">
-                <a class="btn right" href="/routine/{{$favorite->id}}">ルーティンを見る
-                    <span class="material-icons">forward</span>
+                <a class="btn right" href="/routine/{{$favorite->id}}">
+                    見る
+                    <span class="material-icons">double_arrow</span>
                 </a>
                 <br>
             </div>
@@ -40,8 +34,10 @@
 </div>
 @endforeach
 @else
-<h5>お気に入りに追加してみよう</h5>
-<a class="btn" href="/home">探しに行く</a>
+<div class="center">
+    <h5 class="font" >お気に入りに追加してみよう！</h5>
+    <a class="btn" href="{{route('home')}}">探しに行く</a>
+</div>
 @endif
 <button class="btn" type="button" onclick="history.back()">
     <span class="material-icons">

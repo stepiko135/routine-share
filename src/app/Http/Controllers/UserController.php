@@ -21,7 +21,8 @@ class UserController extends Controller
     // ユーザーの一覧表示
     public function index()
     {
-        $users = User::all();
+        // 管理者ユーザー（id=1）は除外してページネーション
+        $users = User::where('id', '!=', 1)->paginate(6);
 
         return view('profile.index', compact('users'));
     }
@@ -87,6 +88,7 @@ class UserController extends Controller
     public function update(ProfileRequest $request, $userName)
     {
         $user = User::where('name', $userName)->first();
+        $user->profile = $request->profile;
         if ($request->image) {
             // 設定済みの写真があれば削除する
             // $user->imageは画像のフルパスの為ファイル名だけ取り出す。
@@ -103,7 +105,7 @@ class UserController extends Controller
         }
         $user->save();
 
-        return redirect('/profile/' . $userName);
+        return redirect('/profile/' . $userName)->with('message','プロフィールを更新しました！');
     }
 
     /**

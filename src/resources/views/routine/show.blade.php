@@ -8,56 +8,101 @@
             <div class="card-content">
 
                 @if (!$routine->user)
-                <p>
+                <a href="/profile/{{$routine->user->name}}">
                     <span class="material-icons">person_outline</span>
                     ：削除されたユーザー
-                </p>
+                </a>
                 @else
-                <p>
+                <a href="/profile/{{$routine->user->name}}">
                     <span class="material-icons">
-                        <img src="{{$routine->user->image}}" class="circle" alt="account_circle"
-                            width="37px" height="37px">
+                        <img src="{{$routine->user->image}}" class="circle" alt="account_circle" width="37px"
+                            height="37px">
                     </span>
                     {{$routine->user->name}}
-                </p>
+                </a>
                 @endif
-                <br>
-                <p>
-                    <span class="material-icons">
-                        import_contacts
-                    </span>
-                    ：{{$routine->name}}
-                </p>
-                <p>{{$routine->desc}}</p>
+                <h5 class="font center">{{$routine->name}}</h5>
+                <p class="font center">{{$routine->desc}}</p>
 
                 {{-- Favoriteボタン --}}
                 @guest
-                <a title="気に入りましたか？登録してみよう" href="/login"><span class="material-icons">star_border</span></a>
-
-                @else
-                <a type="submit" class="favorite" href="#">
-                    <span class="material-icons"
-                        onclick="event.preventDefault(); document.getElementById('fav-submit').submit();">
-                        @if ($routine->favorites()->where('user_id', Auth::id())->exists())
-                        star
-                        @else
-                        star_border
-                        @endif
+                <a title="気に入りましたか？登録してみよう" class="favorite" href="/login">
+                    <span class="material-icons">star_border
                     </span>
                     {{$routine->favorites->count()}}
                 </a>
 
-                <form id="fav-submit" action="/favorite" method="POST">
-                    @csrf
+                @else
+                {{-- お気に入りボタン --}}
+                @if ($routine->favorites()->where('user_id', Auth::id())->exists())
+                <a type="submit" class="favorite" href="#" onclick="event.preventDefault();">
+                    <span class="material-icons 1">star</span>
+                    <span class="material-icons 2 off">star_border</span>
                     <input type="hidden" name="routine_id" value="{{$routine->id}}">
-                </form>
+                <span class="counter">{{$routine->favorites->count()}}</span>
+                </a>
+                @else
+                <a type="submit" class="favorite" href="#" onclick="event.preventDefault();">
+                    <span class="material-icons 2 off">star</span>
+                    <span class="material-icons 1">star_border</span>
+                    <input type="hidden" name="routine_id" value="{{$routine->id}}">
+                    <span class="counter">{{$routine->favorites->count()}}</span>
+                </a>
+                @endif
+                <script>
+                    window.onload = (function(){
+        $('.favorite').click(
+            function(){
+                // お気に入りボタンの見た目を変化させる。
+                $(this).find('.1').toggleClass('off');
+                $(this).find('.2').toggleClass('off');
+                // $(this)をコールバック関数内で使うため、ここで変数に入れる。
+                var button = $(this)
+                $.ajax({
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    type:'POST',
+                    url:'/favorite',
+                    timeout: 10000,
+                    data:{
+                        'routine_id': $(this).find('input[name=routine_id]').val(),
+                    },
+                }).done(function(count){
+                    // buttonを呼び出す。
+                    button.find('.counter').text(count.count);
+                }).fail(function(jqXHR,textStatus,errorThrown){
+                    alert('ファイルの取得に失敗しました。');
+                    console.log("ajax通信に失敗しました")
+                    console.log(jqXHR.status);
+                    console.log(textStatus);
+                    console.log(errorThrown.message);
+                });
+            }
+        );
+    });
+                </script>
                 @endguest
                 {{-- Favoriteボタン終わり --}}
 
                 {{-- 管理者削除ボタン --}}
                 @can('isAdmin')
-                <a class="btn red lighten-2 right" href="/routine{{$routine->id}}" type="submit" onclick="event.preventDefault();
-                document.getElementById('delete').submit();">削除</a>
+                {{-- 削除ボタン --}}
+                <a class=" right waves-effect waves-light btn modal-trigger btn red lighten-2" href="#delete-modal">
+                    <span class="material-icons">delete_forever</span>
+                </a>
+                <!-- modal画面 -->
+                <div id="delete-modal" class="modal">
+                    <div class="font modal-content">
+                        <h5 class="center">ルーティンを削除します</h5>
+                        <p class="center">本当に削除してよろしいですか？</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="modal-close btn red lighten-2" href="/routine/{{$routine->id}}" onclick="event.preventDefault();
+                                document.getElementById('delete').submit();">
+                            削除する
+                        </a>
+                        <a href="#!" class="modal-close btn ">やめておく</a>
+                    </div>
+                </div>
                 <form action="/routine/{{$routine->id}}" id="delete" method="POST">
                     @csrf @method('DELETE')
                 </form>
@@ -67,9 +112,32 @@
         </div>
 
         @if (Auth::id() === $routine->user_id)
-        <a class="btn" href="/routine/{{$routine->id}}/edit">編集</a>
+        {{-- 削除ボタン --}}
+        <a class=" right waves-effect waves-light btn modal-trigger btn red lighten-2" href="#delete-modal">
+            <span class="material-icons">delete_forever</span>
+        </a>
+        {{-- 編集ボタン --}}
+        <a class="btn right" href="/routine/{{$routine->id}}/edit">
+            <span class="material-icons">create</span>
+        </a>
+        <!-- modal画面 -->
+        <div id="delete-modal" class="modal">
+            <div class="font modal-content">
+                <h5 class="center">ルーティンを削除します</h5>
+                <p class="center">本当に削除してよろしいですか？</p>
+            </div>
+            <div class="modal-footer">
+                <a class="modal-close btn red lighten-2" href="/routine/{{$routine->id}}" onclick="event.preventDefault();
+                                document.getElementById('delete').submit();">
+                    削除する
+                </a>
+                <a href="#!" class="modal-close btn ">やめておく</a>
+            </div>
+        </div>
+        <form action="/routine/{{$routine->id}}" id="delete" method="POST">
+            @csrf @method('DELETE')
+        </form>
         @endif
-
 
         {{-- アイテムの表示 --}}
         <section class="timeline">
@@ -87,7 +155,7 @@
                         </time>
                         <p><b>{{$routineItem->title}}</b></p>
                         <br>
-                        <p>{{$routineItem->desc}}</p>
+                        <p style="white-space: pre-wrap">{{$routineItem->desc}}</p>
                     </div>
                 </li>
                 @endforeach
@@ -95,6 +163,7 @@
         </section>
     </div>
     <div class="col s12 m3">
+        <br><br>
         {{-- コメント欄表示 --}}
         コメント欄
     </div>

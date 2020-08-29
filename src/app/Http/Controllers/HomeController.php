@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $routines = Routine::orderBy('created_at','desc')->paginate(5);
+        $routines = Routine::orderBy('created_at','desc')->paginate(4);
         $authId = Auth::id();
 
         return view('home', compact('routines','authId'));

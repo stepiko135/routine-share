@@ -22,7 +22,11 @@ class FavoriteController extends Controller
         $count = $routine->favorites->count();
         // return back();
         // return response()->json(["count"=>$count]);
-        $return_array = compact('count');
-        return json_encode($return_array);
+
+
+        // $return_array = compact('count');
+        // return json_encode($return_array);
+
+        return compact('count');
     }
 }

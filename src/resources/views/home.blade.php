@@ -58,22 +58,25 @@
                     <span class="material-icons 1">star</span>
                     <span class="material-icons 2 off">star_border</span>
                     <input type="hidden" name="routine_id" value="{{$routine->id}}">
-                    {{$routine->favorites->count()}}
+                <span class="counter">{{$routine->favorites->count()}}</span>
                 </a>
                 @else
                 <a type="submit" class="favorite" href="#" onclick="event.preventDefault();">
                     <span class="material-icons 2 off">star</span>
                     <span class="material-icons 1">star_border</span>
                     <input type="hidden" name="routine_id" value="{{$routine->id}}">
-                    {{$routine->favorites->count()}}
+                    <span class="counter">{{$routine->favorites->count()}}</span>
                 </a>
                 @endif
                 <script>
                     window.onload = (function(){
         $('.favorite').click(
             function(){
+                // お気に入りボタンの見た目を変化させる。
                 $(this).find('.1').toggleClass('off');
                 $(this).find('.2').toggleClass('off');
+                // $(this)をコールバック関数内で使うため、ここで変数に入れる。
+                var button = $(this)
                 $.ajax({
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                     type:'POST',
@@ -83,7 +86,8 @@
                         'routine_id': $(this).find('input[name=routine_id]').val(),
                     },
                 }).done(function(count){
-                    $(this).val(count);
+                    // buttonを呼び出す。
+                    button.find('.counter').text(count.count);
                 }).fail(function(jqXHR,textStatus,errorThrown){
                     alert('ファイルの取得に失敗しました。');
                     console.log("ajax通信に失敗しました")

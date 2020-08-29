@@ -11,7 +11,8 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $users = User::paginate(6);
+        // 管理者ユーザー（id=1）は除外してページネーション
+        $users = User::where('id', '!=', 1)->paginate(6);
 
         return view('admin.index', compact('users'));
     }

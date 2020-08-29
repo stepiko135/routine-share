@@ -8,9 +8,6 @@
     ユーザー一覧</h5>
 @foreach ($users as $user)
 {{-- 管理者非表示 --}}
-@if ($loop->first)
-@continue
-@endif
 <div class="row">
     <div class="col s12 m8 offset-m2 card">
         @if (!$user->name)
@@ -39,5 +36,13 @@
     </div>
 </div>
 @endforeach
+<div class="center">
+    {{$users->links('vendor.pagination.materialize')}}
+</div>
 @endif
+<button class="btn" type="button" onclick="history.back()">
+    <span class="material-icons">
+        keyboard_backspace
+    </span>
+    もどる</button>
 @endsection

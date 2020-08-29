@@ -21,7 +21,8 @@ class UserController extends Controller
     // ユーザーの一覧表示
     public function index()
     {
-        $users = User::all();
+        // 管理者ユーザー（id=1）は除外してページネーション
+        $users = User::where('id', '!=', 1)->paginate(6);
 
         return view('profile.index', compact('users'));
     }

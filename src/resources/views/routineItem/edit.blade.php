@@ -82,24 +82,6 @@
             <div class="row">
                 <div class="col s12 m8 offset-m2">
                     <label>時間<input type="time" name="time" value="{{$item->time}}" required placeholder="（例）7:00"></label>
-
-
-
-
-                    {{-- <label>時間<input type="time" name="time" value="{{$item->time}}" required></label> --}}
-
-{{--
-
-                    @for ($i = 0; $i < 10; $i++)
-    現在の値は： {{ $i }}
-@endfor --}}
-
-
-
-
-
-
-
                 </div>
             </div>
 
@@ -113,7 +95,7 @@
             <div class="row">
                 <div class="col s12 m8 offset-m2">
                     <label>説明<textarea name="desc" class="materialize-textarea" wrap="hard"
-                            placeholder="(例) 濃いめのコーヒーがおすすめです！">{{$item->desc}}</textarea></label>
+                            placeholder="(例) 濃いめのコーヒーがおすすめです！" data-length="150">{{$item->desc}}</textarea></label>
                     <div class="center">
                         <a href="/routine-item/{{$item->id}}" class="btn red lighten-2" onclick="event.preventDefault();
                     document.getElementById('delete-item{{$item->id}}').submit()">削除</a>

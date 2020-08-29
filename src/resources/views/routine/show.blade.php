@@ -26,7 +26,11 @@
 
                 {{-- Favoriteボタン --}}
                 @guest
-                <a title="気に入りましたか？登録してみよう" href="/login"><span class="material-icons">star_border</span></a>
+                <a title="気に入りましたか？登録してみよう" class="favorite" href="/login">
+                    <span class="material-icons">star_border
+                    </span>
+                    {{$routine->favorites->count()}}
+                </a>
 
                 @else
                 {{-- お気に入りボタン --}}
@@ -77,8 +81,24 @@
 
                 {{-- 管理者削除ボタン --}}
                 @can('isAdmin')
-                <a class="btn red lighten-2 right" href="/routine{{$routine->id}}" type="submit" onclick="event.preventDefault();
-                document.getElementById('delete').submit();">削除</a>
+                {{-- 削除ボタン --}}
+                <a class=" right waves-effect waves-light btn modal-trigger btn red lighten-2" href="#delete-modal">
+                    <span class="material-icons">delete_forever</span>
+                </a>
+                <!-- modal画面 -->
+                <div id="delete-modal" class="modal">
+                    <div class="font modal-content">
+                        <h5 class="center">ルーティンを削除します</h5>
+                        <p class="center">本当に削除してよろしいですか？</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="modal-close btn red lighten-2" href="/routine/{{$routine->id}}" onclick="event.preventDefault();
+                                document.getElementById('delete').submit();">
+                            削除する
+                        </a>
+                        <a href="#!" class="modal-close btn ">やめておく</a>
+                    </div>
+                </div>
                 <form action="/routine/{{$routine->id}}" id="delete" method="POST">
                     @csrf @method('DELETE')
                 </form>
@@ -99,8 +119,8 @@
         <!-- modal画面 -->
         <div id="delete-modal" class="modal">
             <div class="font modal-content">
-                <h5>ルーティンを削除します</h5>
-                <p>本当に削除してよろしいですか？</p>
+                <h5 class="center">ルーティンを削除します</h5>
+                <p class="center">本当に削除してよろしいですか？</p>
             </div>
             <div class="modal-footer">
                 <a class="modal-close btn red lighten-2" href="/routine/{{$routine->id}}" onclick="event.preventDefault();
@@ -131,7 +151,7 @@
                         </time>
                         <p><b>{{$routineItem->title}}</b></p>
                         <br>
-                        <p>{{$routineItem->desc}}</p>
+                        <p style="white-space: pre-wrap">{{$routineItem->desc}}</p>
                     </div>
                 </li>
                 @endforeach

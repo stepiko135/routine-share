@@ -33,6 +33,7 @@ class LoginController extends Controller
     {
         Session::flash('message', Auth::user()->name.'さん、ようこそ！');
         return RouteServiceProvider::HOME;
+
     }
 
     /**

@@ -34,32 +34,12 @@
             </div>
             <div class="card-action">
                 {{-- Favoriteボタン --}}
-                @guest
-                <a title="気に入りましたか？登録してみよう" href="/login">
-                    <span class="material-icons">star_border</span>
+                <a><span class="material-icons">star</span>
                     {{$routine->favorites->count()}}
                 </a>
-                @else
-                {{-- <form id="fav-submit{{$routine->id}}" action="/favorite" method="POST">
-                @csrf
-                <input type="hidden" name="routine_id" value={{$routine->id}}>
-                </form> --}}
-
-                <a type="submit" href="#" id="favorite{{$routine->id}}">
-                    <span id="isFav{{$routine->id}}" class="material-icons">
-                        @if ($routine->favorites()->where('user_id', Auth::id())->exists())
-                        star
-                        @else
-                        star_border
-                        @endif
-                    </span>
-                    {{$routine->favorites->count()}}
-                </a>
-                @endguest
-                {{-- Favoriteボタン終わり --}}
                 <div class="right">
                     {{-- 確認ボタン --}}
-                    <a class="btn" href="routine/{{$routine->id}}">
+                    <a class="btn" href="/routine/{{$routine->id}}">
                         見る
                         <span class="material-icons">double_arrow</span>
                     </a>

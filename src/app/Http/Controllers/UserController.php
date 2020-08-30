@@ -98,8 +98,11 @@ class UserController extends Controller
                 Storage::disk('s3')->delete("profile/" . $oldImage);
             }
             $image = $request->file('image');
-            // 画像を正方形に整形
-            Image::make($image)->fit(300, 300)->save($image);
+            // 画像を比率維持のまま幅を500pxに自動調整。画像拡大なし。
+            Image::make($image)->resize(500,null,function($constraint){
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })->save($image);
             $path = Storage::disk('s3')->putFile('profile', $image, 'public');
             $user->image = Storage::disk('s3')->url($path);
         }

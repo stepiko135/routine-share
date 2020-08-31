@@ -17,7 +17,7 @@
                     @error('name')
                     <p class="red-text">{{$message}}</p>
                     @enderror
-                    <input type="text" name="name" id="name" placeholder="(例) 平日のルーティン" autofocus
+                    <input type="text" class="chara-count" name="name" id="name" placeholder="(例) 平日のルーティン" autofocus
                         value="{{old('name')}}" data-length="50">
                 </div>
             </div>
@@ -28,7 +28,7 @@
                     @error('desc')
                     <p class="red-text">{{$message}}</p>
                     @enderror
-                    <textarea name="desc" id="desc" class="materialize-textarea"
+                    <textarea name="desc" id="desc" class="materialize-textarea chara-count"
                         placeholder="(例) 忙しい朝でもリラックスできる私のルーティンを紹介します！！" data-length="150">{{old('desc')}}</textarea>
                     <br>
                     <div class="center">

@@ -40,14 +40,14 @@
             <div class="row">
                 <div class="input-field col s12 m8 offset-m2">
                     <label for="title">アイテム名</label>
-                    <input type="text" id="title" name="title" placeholder="(例) コーヒーを飲む" autofocus data-length="50"
+                    <input type="text" id="title" class="chara-count" name="title" placeholder="(例) コーヒーを飲む" autofocus data-length="50"
                         value="{{old('title')}}">
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m8 offset-m2">
                     <label for="desc">説明</label>
-                    <textarea name="desc" id="desc" class="materialize-textarea" wrap="hard"
+                    <textarea name="desc" id="desc" class="materialize-textarea chara-count" wrap="hard"
                         placeholder="(例) 濃いめのコーヒーがおすすめです！" data-length="150">{{old('desc')}}</textarea>
                 </div>
             </div>
@@ -94,7 +94,7 @@
 
             <div class="row">
                 <div class="col s12 m8 offset-m2">
-                    <label>説明<textarea name="desc" class="materialize-textarea" wrap="hard"
+                    <label>説明<textarea name="desc" class="materialize-textarea chara-count" wrap="hard"
                             placeholder="(例) 濃いめのコーヒーがおすすめです！" data-length="150">{{$item->desc}}</textarea></label>
                     <div class="center">
                         <a href="/routine-item/{{$item->id}}" class="btn red lighten-2" onclick="event.preventDefault();

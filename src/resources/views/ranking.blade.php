@@ -20,8 +20,7 @@
             <div class="card-content">
                 <a href="/profile/{{$routine->user->name}}">
                     <span class="material-icons">
-                        <img src="{{$routine->user->image}}" class="circle" alt="account_circle" width="37px"
-                            height="37px">
+                        <img src="{{$routine->user->image}}" class="circle small-profile" alt="account_circle">
                     </span>
                     {{$routine->user->name}}
                 </a>

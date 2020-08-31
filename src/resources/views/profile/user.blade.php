@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col s12 m8 offset-m2 card center">
         <br>
-        <img src="{{$user->image}}" width="200px" height="200px" alt="プロフィール画像" class="circle">
+        <img src="{{$user->image}}"　alt="プロフィール画像" class="circle main-profile">
         <h5>
             <span class="material-icons">person_outline</span>
             {{$user->name}}

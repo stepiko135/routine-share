@@ -52,3 +52,16 @@ main{
 .pagination .active{
     background-color: $main !important;
 }
+
+// プロフィール画像サイズ調整
+// 個人プロフィール表示
+.main-profile{
+    max-width:300px;
+    max-height:300px;
+    height:auto;
+}
+// サムネイル
+.small-profile{
+    width:37px;
+    height:37px;
+}

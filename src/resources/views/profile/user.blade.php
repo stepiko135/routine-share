@@ -33,7 +33,7 @@
     <div class="col s10 offset-s1 m6 offset-m3 card">
         <br>
         <p class="font center"><b>{{$routine->name}}</b></p>
-        <p class="font center">{{$routine->desc}}</p>
+        <p class="font center" style="white-space: pre-wrap">{{$routine->desc}}</p>
         <span class="material-icons favorite">
             star
         </span>{{$routine->favorites->count()}}

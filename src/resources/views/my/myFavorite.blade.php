@@ -18,8 +18,8 @@
                     </span>
                     {{$favorite->user->name}}
                 </a>
-                <p class="font center"><b>{{$favorite->name}}</b></p>
-                <p class="font center">{{$favorite->desc}}</p>
+                <p class="font center" ><b>{{$favorite->name}}</b></p>
+                <p class="font center" style="white-space: pre-wrap">{{$favorite->desc}}</p>
             </div>
             <div class="card-action">
                 <a class="btn right" href="/routine/{{$favorite->id}}">

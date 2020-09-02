@@ -29,7 +29,7 @@
                 <p class="center font">
                     <b>{{$routine->name}}</b>
                 </p>
-                <p class="center font">{{$routine->desc}}</p>
+                <p style="white-space: pre-wrap" class="center font">{{$routine->desc}}</p>
             </div>
             <div class="card-action">
                 {{-- Favoriteボタン --}}

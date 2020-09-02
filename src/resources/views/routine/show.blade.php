@@ -21,7 +21,7 @@
                 </a>
                 @endif
                 <h5 class="font center">{{$routine->name}}</h5>
-                <p class="font center">{{$routine->desc}}</p>
+                <p class="font center" style="white-space: pre-wrap">{{$routine->desc}}</p>
 
                 {{-- Favoriteボタン --}}
                 @guest
@@ -152,7 +152,7 @@
                                 {{substr($routineItem->time,0,5)}}
                             </p>
                         </time>
-                        <p><b>{{$routineItem->title}}</b></p>
+                        <p style="white-space: pre-wrap"><b>{{$routineItem->title}}</b></p>
                         <br>
                         <p style="white-space: pre-wrap">{{$routineItem->desc}}</p>
                     </div>

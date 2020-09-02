@@ -42,7 +42,7 @@
                 <p class="center font">
                     <b>{{$routine->name}}</b>
                 </p>
-                <p class="center font">{{$routine->desc}}</p>
+                <p class="center font" style="white-space: pre-wrap">{{$routine->desc}}</p>
             </div>
             <div class="card-action">
                 @guest

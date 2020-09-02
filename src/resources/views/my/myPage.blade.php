@@ -24,7 +24,7 @@
                     {{$routine->user->name}}
                 </p>
                 <p class="font center"><b>{{$routine->name}}</b></p>
-                <p class="font center">{{$routine->desc}}</p>
+                <p class="font center" style="white-space: pre-wrap">{{$routine->desc}}</p>
             </div>
             <div class="card-action">
                 {{-- Favoriteボタン --}}

@@ -88,14 +88,14 @@
             <div class="row">
                 <div class="col s12 m8 offset-m2">
                     <label>アイテム名<input type="text" name="title" placeholder="(例) コーヒーを飲む" autofocus
-                            value="{{$item->title}}"></label>
+                            value="{{$item->title}}" style="white-space: pre-wrap"></label>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col s12 m8 offset-m2">
                     <label>説明<textarea name="desc" class="materialize-textarea chara-count" wrap="hard"
-                            placeholder="(例) 濃いめのコーヒーがおすすめです！" data-length="150">{{$item->desc}}</textarea></label>
+                            placeholder="(例) 濃いめのコーヒーがおすすめです！" data-length="150" style="white-space: pre-wrap">{{$item->desc}}</textarea></label>
                     <div class="center">
                         <a href="/routine-item/{{$item->id}}" class="btn red lighten-2" onclick="event.preventDefault();
                     document.getElementById('delete-item{{$item->id}}').submit()">削除</a>

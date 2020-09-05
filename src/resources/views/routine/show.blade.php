@@ -164,7 +164,7 @@
     <div class="col s12 m3">
         <br><br>
         {{-- コメント欄表示 --}}
-        コメント欄
+        コメントはありません。
     </div>
 </div>
 <button class="btn" type="button" onclick="history.back()">もどる</button>

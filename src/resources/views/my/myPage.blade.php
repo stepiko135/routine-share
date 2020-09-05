@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<br>
 <a href="/routine/create" class="right btn-floating btn-large waves-effect waves-light tooltipped"
     data-position="bottom" data-tooltip="ルーティンを作る"><i class="material-icons">add</i></a><br>
 @if (!count($routines)>0)

@@ -100,8 +100,7 @@
                 <li>
                     <a data-target="dropdown1" class="dropdown-trigger" href="#" role="button">
                         <span class="material-icons">
-                            <img src="{{Auth::user()->image}}" class="circle" alt="account_circle" width="37px"
-                                height="37px">
+                            <img src="{{Auth::user()->image}}" class="circle small-profile" alt="account_circle">
                         </span>
                         {{ Auth::user()->name }} <span><i class="material-icons right">arrow_drop_down</i></span>
                     </a>
@@ -255,7 +254,7 @@
                         <ul>
                             <li><a class="grey-text text-lighten-3" href="/ranking">
                                     <span class="material-icons">sort</span>ランキング</a></li>
-                            <li><a class="grey-text text-lighten-3" href="/favorite">
+                            <li><a class="grey-text text-lighten-3" href="/my-favorite">
                                     <span class="material-icons">bookmark_border</span>
                                     お気に入り
                                 </a></li>

@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<br>
 <a href="/routine/create" class="right btn-floating btn-large waves-effect waves-light tooltipped"
     data-position="bottom" data-tooltip="ルーティンを作る"><i class="material-icons">add</i></a><br>
 @if (!count($routines)>0)
@@ -19,13 +18,12 @@
             <div class="card-content">
                 <p>
                     <span class="material-icons">
-                        <img src="{{$routine->user->image}}" class="circle" alt="account_circle" width="37px"
-                            height="37px">
+                        <img src="{{$routine->user->image}}" class="circle small-profile" alt="account_circle">
                     </span>
                     {{$routine->user->name}}
                 </p>
                 <p class="font center"><b>{{$routine->name}}</b></p>
-                <p class="font center">{{$routine->desc}}</p>
+                <p class="font center" style="white-space: pre-wrap">{{$routine->desc}}</p>
             </div>
             <div class="card-action">
                 {{-- Favoriteボタン --}}

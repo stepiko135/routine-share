@@ -11,7 +11,7 @@ $(document).ready(function() {
     $(".modal").modal();
     $(".sidenav").sidenav();
     $('.tooltipped').tooltip();
-    $('input, textarea').characterCounter();
+    $('.chara-count').characterCounter();
 
 });
 

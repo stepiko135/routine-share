@@ -15,14 +15,13 @@
                 @else
                 <a href="/profile/{{$routine->user->name}}">
                     <span class="material-icons">
-                        <img src="{{$routine->user->image}}" class="circle" alt="account_circle" width="37px"
-                            height="37px">
+                        <img src="{{$routine->user->image}}" class="circle small-profile" alt="account_circle">
                     </span>
                     {{$routine->user->name}}
                 </a>
                 @endif
                 <h5 class="font center">{{$routine->name}}</h5>
-                <p class="font center">{{$routine->desc}}</p>
+                <p class="font center" style="white-space: pre-wrap">{{$routine->desc}}</p>
 
                 {{-- Favoriteボタン --}}
                 @guest
@@ -153,7 +152,7 @@
                                 {{substr($routineItem->time,0,5)}}
                             </p>
                         </time>
-                        <p><b>{{$routineItem->title}}</b></p>
+                        <p style="white-space: pre-wrap"><b>{{$routineItem->title}}</b></p>
                         <br>
                         <p style="white-space: pre-wrap">{{$routineItem->desc}}</p>
                     </div>
@@ -165,7 +164,7 @@
     <div class="col s12 m3">
         <br><br>
         {{-- コメント欄表示 --}}
-        コメント欄
+        コメントはありません。
     </div>
 </div>
 <button class="btn" type="button" onclick="history.back()">もどる</button>

@@ -24,7 +24,7 @@ class ProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'image',
+            'image' => 'image|max:10240',
             'profile' => 'max:100',
         ];
     }
@@ -32,7 +32,7 @@ class ProfileRequest extends FormRequest
     public function messages()
     {
         return [
-            'image.max' => 'ファイル名が長すぎます。100文字以内にしてください。',
+            'image.max' => 'ファイルが大きすぎます。10MB以下にしてください。',
             'image.dimensions' =>'ファイルが大きすぎます。最大1000×1000ピクセルです。',
             'image.image' => '画像ファイルを選択してください。',
             'profile.max' => '200文字以内で入力してください。',

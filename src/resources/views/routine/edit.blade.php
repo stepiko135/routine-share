@@ -24,7 +24,7 @@
                     @error('name')
                     <p class="red-text">{{$message}}</p>
                     @enderror
-                    <input class="active" type="text" name="name" id="name" placeholder="(例) 平日のルーティン" value="{{$routine->name}}"
+                    <input class="active chara-count" type="text" name="name" id="name" placeholder="(例) 平日のルーティン" value="{{$routine->name}}"
                         autofocus data-length="50">
                 </div>
             </div>
@@ -35,8 +35,8 @@
                     @error('desc')
                     <p class="red-text">{{$message}}</p>
                     @enderror
-                    <textarea name="desc" id="desc" wrap="hard" class="materialize-textarea"
-                        placeholder="(例) 忙しい朝でもリラックスできる私のルーティンを紹介します！！" data-length="150">{{$routine->desc}}</textarea>
+                    <textarea name="desc" id="desc" wrap="hard" class="materialize-textarea chara-count"
+                        placeholder="(例) 忙しい朝でもリラックスできる私のルーティンを紹介します！！" data-length="150" style="white-space: pre-wrap">{{$routine->desc}}</textarea>
                     <div class="center">
                         <button type="reset" class="btn red lighten-2">クリア</button>
                         <button type="submit" class="btn">ルーティンアイテムの更新へ</button>
@@ -46,10 +46,16 @@
         </form>
     </div>
 </div>
-{{-- <div class="center">
-    <a class="btn"
-        href="{{action('RoutineItemController@edit',['routine' => $routine->id ])}}">2,アイテム作成へ</a>
-</div> --}}
+<div class="font center">
+    <span class="material-icons">
+        arrow_drop_down
+    </span><br>
+    2,ルーティンアイテムの編集<br>
+    <span class="material-icons">
+        arrow_drop_down
+    </span><br>
+    3,完成！
+</div>
 <button class="btn" type="button" onclick="history.back()">
     <span class="material-icons">
         keyboard_backspace

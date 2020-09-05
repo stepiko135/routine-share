@@ -18,7 +18,7 @@
         @else
         <a href="/profile/{{$user->name}}">
             <span class="material-icons">
-                <img src="{{$user->image}}" class="circle" alt="account_circle" width="37px" height="37px">
+                <img src="{{$user->image}}" class="circle small-profile" alt="account_circle">
             </span>
             {{$user->name}}</a>
         @endif

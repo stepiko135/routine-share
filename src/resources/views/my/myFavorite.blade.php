@@ -14,13 +14,12 @@
             <div class="card-content">
                 <a href="/profile/{{$favorite->user->name}}">
                     <span class="material-icons">
-                        <img src="{{$favorite->user->image}}" class="circle" alt="account_circle" width="37px"
-                            height="37px">
+                        <img src="{{$favorite->user->image}}" class="circle small-profile" alt="account_circle">
                     </span>
                     {{$favorite->user->name}}
                 </a>
-                <p class="font center"><b>{{$favorite->name}}</b></p>
-                <p class="font center">{{$favorite->desc}}</p>
+                <p class="font center" ><b>{{$favorite->name}}</b></p>
+                <p class="font center" style="white-space: pre-wrap">{{$favorite->desc}}</p>
             </div>
             <div class="card-action">
                 <a class="btn right" href="/routine/{{$favorite->id}}">

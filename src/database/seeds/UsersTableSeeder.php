@@ -79,11 +79,11 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'id' => 8,
-                'name' => 'あい',
+                'name' => '綾',
                 'email' => 'test8@test.com',
                 'password' => Hash::make('password'),
                 'image' => 'https://routine-share.s3-ap-northeast-1.amazonaws.com/profile/girl.png',
-                'profile' => 'QOL高めたい！',
+                'profile' => 'QOLを高めたい',
                 'role' => 5,
             ],
             [

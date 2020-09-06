@@ -1,7 +1,6 @@
-#  :sunny: [Routine Share](http://www.routine-share.work/)
+# :sunny: [Routine Share](http://www.routine-share.work/)
 
-
-![output](https://user-images.githubusercontent.com/64528558/91655595-b2225f80-eaec-11ea-9535-cd4597197f37.gif)
+![https://user-images.githubusercontent.com/64528558/91655595-b2225f80-eaec-11ea-9535-cd4597197f37.gif](https://user-images.githubusercontent.com/64528558/91655595-b2225f80-eaec-11ea-9535-cd4597197f37.gif)
 
 ### :sunny: [Routine Share](http://www.routine-share.work/)
 
@@ -9,7 +8,7 @@
 
 - **ルーティン（日常で毎回行うこと）をシェアするためのアプリ**です。
 - 他のルーティンを参考に自分用のルーティンを作ったり、投稿したルーティンからのフィードバックで**生活の質を向上させることを目的**として作りました。
-- **Laravelを使い、Docker環境で開発**しています。
+- **Laravelを使い、開発からDocker環境**で行っています。
 - 2020年8月の**1ヶ月間で０から公開できるレベルを目標**として制作しました。
 
 ## :bulb: 作成経緯
@@ -26,18 +25,22 @@
 
 2020年8月からすべて**独学**で制作しています。
 
-
 ## :star: 特徴
 
 - **githubでのプルリクエストを使った開発**
+    - 独学のためIssuesに近い使い方をしています。
 - **Dockerによるコンテナ環境での開発**
-- **CircleCIによるgit pushでの自動テスト,** masterブランチへマージで自動デプロイ
+    - 必要最小限の構成にしたかった事とDockerを理解する為、Laradockは使わず開発しました。
+- **AWSへのデプロイ**
+    - ECR,ECSを利用してデプロイしました。
+    - DBの冗長性も高めています。
+- **CircleCIによるgit pushでの自動テスト**
 - レスポンシブ対応
 - 管理者ユーザーによる一般ユーザーアカウント、投稿の削除
 
     （ユーザーはソフトデリート、削除されたユーザーの投稿は残しています。）
-- アップロード画像の自動整形（300x300に整形されます）
 
+- アップロード画像の自動整形
 
 ## :notebook: 学習方法
 
@@ -50,6 +53,10 @@
     自身がQiitaには何度も助けてもらっているため、微力ながら力になりたいと思い始めました。
 
     [@stepiko135のマイページ - Qiita](https://qiita.com/stepiko135)
+
+## :cloud:ネットワーク構成図
+
+![https://user-images.githubusercontent.com/64528558/92322992-f32bee00-f06f-11ea-8718-429cec53ce1b.png](https://user-images.githubusercontent.com/64528558/92322992-f32bee00-f06f-11ea-8718-429cec53ce1b.png)
 
 ## :computer: 使用技術
 
@@ -72,45 +79,66 @@
 
     **本番環境**
 
-    - PostgreSQL
-    - Apache 2
-    - Heroku
-    - AWS S3
+    - AWS(詳細はネットワーク構成図参照)
+        - RDS(MySQL8.0)
+        - Nginx 1.17
 
-    **開発時コンテナ環境**
+    **開発時環境**
 
     - MySQL 8.0
     - Nginx 1.17
 
 ### その他
 
+- CircleCI
 - git 2.24.3
 - Linux基礎コマンド
-- Github  (Pull Request, Issues を使用)
-
-## :fire: 今後の取り組み
-
-- **機能の追加**
-
-    利用者のフィードバックの反映、機能の追加を継続していく予定です。
-
-- **AWSの利用**
-
-    過去、学習でEC2とRDS,Route53を用いたデプロイを行っています。
-
-    今回はコンテナ環境での開発のため、**ECR,ECSを用いてのデプロイを目標**に学習を継続しています。
-
+- Github (Pull Request, Issues を使用)
 
 ## :dvd: 利用サイト
 
--  Qiita：経験したことのアウトプットも行っています。
+- Qiita：経験したことのアウトプットも行っています。
 
     [@stepiko135のマイページ - Qiita](https://qiita.com/stepiko135)
 
--  Twitter：2020年4月のプログラミング開始時に始めました。最近投稿は少なめです。
+- Twitter：2020年4月のプログラミング開始時に始めました。最近投稿は少なめです。
 
     [stepiko135@Twitter.com](https://twitter.com/stepiko135)
 
--  teratail：相当考えても解決できなかった問題はこちらで質問していました。
+- teratail：相当考えても解決できなかった問題はこちらで質問していました。
 
     [WASWAS｜teratail（テラテイル）](https://teratail.com/users/WASWAS#question)
+
+
+## :construction_worker: ローカルでの起動方法
+
+1. docker-composeとLaravel用の `.env`を それぞれの`.env.example`を基に作成します。
+
+    Laravel用の `.env`のAPP_KEYは4で作成します。
+
+2. buildしてappコンテナに入ります。
+
+    ```php
+    docker-compose up -d --build
+    docker-compose exec app ash
+    ```
+
+3. composerをインストールします。
+
+    ```php
+    composer install
+    ```
+
+4. APP_KEYの作成
+
+    ```php
+    php artisan key:generate
+    ```
+
+5. マイグレーション＆シーディング
+
+    ```php
+    php artisan migrate:fresh --seed
+    ```
+
+6. [http://localhost:80/](http://localhost:80/) にアクセスします。

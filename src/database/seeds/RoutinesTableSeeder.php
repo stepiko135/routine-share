@@ -74,6 +74,12 @@ class RoutinesTableSeeder extends Seeder
             //     'name' => '',
             //     'desc' => '',
             // ],
+            [
+                'id' => 15,
+                'user_id' => 15,
+                'name' => '休日のルーティン',
+                'desc' => '休みの日はあれこれつめこんでいます。',
+            ],
         ]);
     }
 }

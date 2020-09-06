@@ -83,7 +83,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'test8@test.com',
                 'password' => Hash::make('password'),
                 'image' => 'https://routine-share.s3-ap-northeast-1.amazonaws.com/profile/girl.png',
-                'profile' => 'QOLを高めたい',
+                'profile' => '',
                 'role' => 5,
             ],
             [
@@ -92,7 +92,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'test9@test.com',
                 'password' => Hash::make('password'),
                 'image' => 'https://routine-share.s3-ap-northeast-1.amazonaws.com/profile/sky2.jpg',
-                'profile' => '',
+                'profile' => 'QOLを高めたい',
                 'role' => 5,
             ],
             [
@@ -138,6 +138,15 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make('mA7SkEJU'),
                 'image' => 'https://routine-share.s3-ap-northeast-1.amazonaws.com/profile/car.jpg',
                 'profile' => '私はゲストユーザーです。',
+                'role' => 5,
+            ],
+            [
+                'id' => 15,
+                'name' => 'Pa82',
+                'email' => 'test14@test.com',
+                'password' => Hash::make('password'),
+                'image' => 'https://routine-share.s3-ap-northeast-1.amazonaws.com/profile/cool.png',
+                'profile' => '',
                 'role' => 5,
             ],
         ]);

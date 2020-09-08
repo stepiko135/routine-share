@@ -56,7 +56,7 @@
 
 ## :cloud:ネットワーク構成図
 
-![https://user-images.githubusercontent.com/64528558/92322992-f32bee00-f06f-11ea-8718-429cec53ce1b.png](https://user-images.githubusercontent.com/64528558/92322992-f32bee00-f06f-11ea-8718-429cec53ce1b.png)
+![Routine-share](https://user-images.githubusercontent.com/64528558/92437213-55f0c700-f1e1-11ea-972e-4cc68345cc75.png)
 
 ## :computer: 使用技術
 

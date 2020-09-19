@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Routine','favorites','user_id','routine_id')->withTimestamps();
     }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
 }

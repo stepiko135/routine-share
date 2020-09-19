@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Routine;
+use App\Comment;
 use App\RoutineItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -65,8 +66,9 @@ class RoutineController extends Controller
         if($routine)
         {
             $routineItems = RoutineItem::where('routine_id',$id)->orderBy('time','asc')->get();
+            $comments = Comment::all();
 
-            return view('routine.show',compact('routine','routineItems'));
+            return view('routine.show',compact('routine','routineItems','comments'));
         }else{
             return redirect()->route('home');
         }

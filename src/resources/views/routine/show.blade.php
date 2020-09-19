@@ -38,7 +38,7 @@
                     <span class="material-icons 1">star</span>
                     <span class="material-icons 2 off">star_border</span>
                     <input type="hidden" name="routine_id" value="{{$routine->id}}">
-                <span class="counter">{{$routine->favorites->count()}}</span>
+                    <span class="counter">{{$routine->favorites->count()}}</span>
                 </a>
                 @else
                 <a type="submit" class="favorite" href="#" onclick="event.preventDefault();">
@@ -162,10 +162,68 @@
         </section>
     </div>
     <div class="col s12 m3">
-        <br><br>
         {{-- コメント欄表示 --}}
-        コメントはありません。
+        {{-- ログインしていたら投稿画面表示 --}}
+        @auth
+        <div class="card">
+            <div class="card-content">
+                <a href="/profile/{{Auth::User()->name}}">
+                    <span class="material-icons">
+                        <img src="{{Auth::User()->image}}" class="circle small-profile" alt="account_circle">
+                    </span>
+                    {{Auth::User()->name}}
+                </a>
+                <textarea name="comment" id="comment" class="materialize-textarea chara-count"
+                    data-length="100"></textarea>
+                <input type="submit" class="btn comment" value="投稿">
+            </div>
+        </div>
+        @endauth
+
+        @if (count($comments)>0)
+        <div class="comment-area">
+            @foreach ($comments as $comment)
+            <div class="card">
+                <div class="card-content">
+                    <a href="/profile/{{$comment->user->name}}">
+                        <span class="material-icons">
+                            <img src="{{$comment->user->image}}" class="circle small-profile">
+                        </span>
+                        {{$comment->user->name}}
+                    </a>
+                    <p class="center">
+                        {{$comment->message}}
+                    </p>
+                </div>
+            </div>
+            @endforeach
+        </div>
+        @else
+        <p class="center">コメントはありません。</p>
+        @endif
     </div>
 </div>
 <button class="btn" type="button" onclick="history.back()">もどる</button>
+
+{{-- コメントAjax --}}
+<script>
+    window.onload = (function(){
+$('.commnent').click(
+    function(){
+        $ajax({
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            type:'post',
+            url:'/post-comment',
+            timeout:10000,
+            data:{
+                'routine_id':{{$routine->id}},
+                'user_id':{{$routine->user->id}},
+                ''
+            }
+
+        })
+    }
+)
+    })
+</script>
 @endsection

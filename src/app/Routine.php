@@ -23,4 +23,9 @@ class Routine extends Model
     {
         return $this->belongsToMany('App\User','favorites','routine_id','user_id')->withTimestamps();
     }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
 }

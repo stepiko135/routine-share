@@ -35,9 +35,10 @@ Route::get('/routine-item/{routineId}/edit','RoutineItemController@edit');
 Route::put('/routine-item/{routineItem}','RoutineItemController@update');
 Route::delete('/routine-item/{routineItem}','RoutineItemController@destroy');
 
-
-
-
 Route::post('/favorite','FavoriteController@favorite');
 
 Route::resource('/profile','UserController');
+
+Route::post('/post-comment','CommentController@create');
+Route::post('/edit-comment','CommentController@update');
+Route::post('/delete-comment','CommentController@delete');

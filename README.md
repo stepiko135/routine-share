@@ -1,8 +1,16 @@
-# :sunny: [Routine Share](http://www.routine-share.work/)
+# :sunny: [Routine Share](https://routine-share-hiro.herokuapp.com/)
 
 ![https://user-images.githubusercontent.com/64528558/91655595-b2225f80-eaec-11ea-9535-cd4597197f37.gif](https://user-images.githubusercontent.com/64528558/91655595-b2225f80-eaec-11ea-9535-cd4597197f37.gif)
 
-### :sunny: [Routine Share](http://www.routine-share.work/)
+### :sunny: [Routine Share](https://routine-share-hiro.herokuapp.com/)
+
+## :warning: AWS停止中、Herokuで公開しています
+
+変更前：[http://routine-share.work](http://routine-share.work)
+
+**現在**　：[https://routine-share-hiro.herokuapp.com/](https://routine-share-hiro.herokuapp.com/)
+
+**画面の表示まで時間がかかりますがご了承下さい。**
 
 ## :earth_asia: 概要
 
